@@ -1,0 +1,123 @@
+.navbar {
+    display: flex;
+    background: #fff;
+    height: 4rem;
+    @media (min-width: 768px) {
+        height: 5rem;
+        border-bottom: 1px solid #E4EBFA;
+    }
+    @media (min-width: 992px) {
+        height: 6rem;
+    }
+        .display-mobile-logo {
+            padding: 1rem;
+        }
+        .display-dark-logo, .display-light-logo {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .display-dark-logo {
+                display: inline-block;
+                z-index: 0;
+                padding: 1.5rem;
+            }
+            .display-mobile-logo {
+                display: none;
+            }
+        }
+    .navbar-left {
+        display: flex;
+        flex-grow: 2;
+        align-items: center;
+        .board-name {
+            display: flex;
+            align-items: center;
+            font-size: 1.125rem;
+            font-weight: 700;
+            gap: 0.5rem;
+            @media (min-width: 768px) {
+                font-size: 1.25rem;
+                padding: 1.5rem;
+                button {
+                    display: none;
+                }
+            }
+            @media (min-width: 992px) {
+                font-size: 1.5rem;
+                padding: 0rem 1.75rem 0.5rem 1.5rem;
+            }
+        }
+        .vertical-line {
+            @media (min-width: 768px) {
+                content: '';
+                width: 1px;
+                height: 100%;
+                background-color: #E4EBFA;
+            }
+            @media (min-width: 992px) {
+                margin: 0rem 0.5rem;
+            }
+        }
+    }
+
+    .navbar-right {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        @media (min-width: 768px) {
+            padding: 1.5rem;
+            gap: 1.5rem;
+        }
+        @media (min-width: 992px) {
+            padding: 1.25rem 2rem 1.7rem 0rem;
+        }
+        .addTaskButton {
+                font-size: 0.9375rem;
+                background: #635FC7;
+                border-radius: 2rem;
+                min-width: 3rem;
+                height: 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @media (min-width: 768px) {
+                    img {
+                        height: 0.55rem;
+                        transform: translate(-33%, 33%);
+                    }
+                    display: flex;
+                    width: 10.25rem;
+                    height: 3rem;
+                }        
+        }
+        .addTaskButton-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .add-task-txt {
+            display: none;
+            color: #fff;
+            @media (min-width: 768px) {
+                
+                display: inline-block;
+                color: var(--white, #FFF);
+                font-weight: 700;
+            }
+        }
+        .verticalElipses {
+            height: 50%;
+            width: 0.23075rem;
+            @media (min-width: 768px) {
+                width: 0.28844rem;
+                height: 1.25rem;
+            }
+        }
+    }
+    @media (min-width: 768px) {
+        .isOpen {
+        margin-left: 3.6rem;
+        }
+    }
+}

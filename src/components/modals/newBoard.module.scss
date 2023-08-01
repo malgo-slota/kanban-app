@@ -1,0 +1,103 @@
+.modal-bg {
+    position: fixed;
+    // position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.50);
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .modal {
+            overflow: scroll;
+            &::-webkit-scrollbar {
+                    display: none;
+            }
+            // position: relative;
+            margin: 0 1rem;
+            max-width: 30rem;
+            min-width: 23.4375rem;
+            // transform: translate(4%, 30%);
+            background: #fff;
+            border-radius: 6px;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            @media (min-width: 375px) {
+                margin: 0 auto;
+            }
+            h1 {
+                font-size: 1.125rem;;
+            }
+            div {
+                display: flex;
+                flex-direction: column;
+                div {
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+            
+            form {
+                margin: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                label {
+                    color:  #828FA3;
+                    font-size: 0.75rem;
+                    padding: 1.5rem 0 0 0;
+                }
+                input {
+                    margin-top: 0.5rem;
+                    padding: 0 1rem;
+                    height: 2.5rem;
+                    border-radius: 4px;
+                    border: 1px solid rgba(130, 143, 163, 0.25);
+                    &::placeholder {
+                        opacity: 0.25;
+                        font-size: 0.8125rem;
+                        font-weight: 500;
+                        line-height: 1.4375rem;
+                    }
+                }
+                .columns-wrapper {
+                    // border: 1px solid purple;
+                    // margin-top: 0.8rem;
+                    display: flex;
+                    button {
+                        margin-top: 0.7rem;
+                        color: #635FC7;
+                        border-radius: 20px;
+                        padding: 0.8rem;
+                    }
+                    div {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        input {
+                            width: 100%;
+                            margin-right: 0.8rem;
+                        }
+                    }
+                    .close {
+                        // border: 1px solid red;
+                        padding: 0;
+                        transform: translate(20%, 0%);
+                    }
+                }
+                .add {
+                    background: #635FC71A;
+                }
+                .create {
+                    margin-top: 1.45rem;
+                    color: #fff;
+                    background: #635FC7;
+                    border-radius: 20px;
+                    padding: 0.8rem;
+                    
+                }
+            }
+        }
+    }
