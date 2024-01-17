@@ -1,4 +1,4 @@
-import { createContext, useContext, ReactNode, useState, useEffect } from "react";
+import { createContext, useContext, ReactNode, useState } from "react";
 import data from "../data.json";
 
 type BoardsProviderProps = {
@@ -35,6 +35,8 @@ type BoardsContext = {
    sidebarOpen: boolean,
    setSidebarOpen: (sidebarOpen: boolean) => void,
    closeSidebar: () => void,
+   addTaskModalOpen: boolean,
+   setAddTaskModalOpen: (addTaskModalOpen: boolean) => void,
 }
 
 const BoardsContext = createContext({} as BoardsContext);
@@ -48,6 +50,7 @@ export function BoardsProvider({children} : BoardsProviderProps) {
     const [boards, setBoards] = useState(data.boards);
     const [activeBoard, setActiveBoard] = useState(data.boards[0]);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [addTaskModalOpen ,setAddTaskModalOpen] = useState(false);
 
     const closeSidebar = () => {
         setSidebarOpen(false)
@@ -60,7 +63,9 @@ export function BoardsProvider({children} : BoardsProviderProps) {
                                             setActiveBoard,
                                             sidebarOpen,
                                             setSidebarOpen,
-                                            closeSidebar
+                                            closeSidebar,
+                                            addTaskModalOpen,
+                                            setAddTaskModalOpen,
                                             }}>
         {children}
     </BoardsContext.Provider>

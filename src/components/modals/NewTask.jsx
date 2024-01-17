@@ -2,13 +2,22 @@ import React from 'react'
 import style from './newTask.module.scss'
 import iconCross from '../../assets/icon-cross.svg'
 import { Select } from '../elements/select/Select'
+import { useBoards } from '../../context/BoardsContext';
 
 export const NewTask = () => {
 
         document.body.style.overflow = "hidden";
+        const { setAddTaskModalOpen } = useBoards();
 
   return (
-    <div className={style["modal-bg"]}>
+    <div className={style["modal-bg"]}
+      onClick={(e) => {
+                    if (e.target !== e.currentTarget) {
+                        return;
+                    }
+                setAddTaskModalOpen(false);
+            }}
+        >
     <div className={style.modal}>
     <div className={style.content}>
         <h1>Add New Task</h1>
