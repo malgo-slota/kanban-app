@@ -42,6 +42,11 @@ export const NewBoard = ({setIsBoardModalOpen}) => {
             console.log(current);
     };
 
+    const removeColumn = (id) => {
+        setBoardColumns((prevState) => prevState.filter((el) => el.id !== id));
+    };
+
+
     return (
         <div className={style["modal-bg"]}
             onClick={(e) => {
@@ -69,7 +74,8 @@ export const NewBoard = ({setIsBoardModalOpen}) => {
                                         type="text"
                                         value={column.name}/>
                                     <button className={style.close}>
-                                        <img src={iconCross} alt="delete-column-icon"/>
+                                        <img src={iconCross} alt="delete-column-icon" 
+                                             onClick={() => removeColumn(column.id)}/>
                                     </button>
                                 </div>
                             );
