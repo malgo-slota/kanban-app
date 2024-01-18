@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import style from './boardGrid.module.scss';
+import style from '../style/boardGrid.module.scss';
 import { ViewTask } from './modals/ViewTask';
 import { useBoards } from '../context/BoardsContext';
 

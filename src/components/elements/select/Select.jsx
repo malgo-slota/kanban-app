@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import styles from "./select.module.scss"
+import styles from "../../../style/select.module.scss";
 import { useBoards } from "../../../context/BoardsContext";
 
 // type SelectProps = {

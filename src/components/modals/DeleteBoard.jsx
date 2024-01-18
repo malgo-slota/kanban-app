@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './deleteModal.module.scss'
+import style from '../style/deleteModal.module.scss'
 
 export const DeleteBoard = () => {
 

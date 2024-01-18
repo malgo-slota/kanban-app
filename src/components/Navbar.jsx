@@ -5,7 +5,7 @@ import verticalElipses from '../assets/icon-vertical-ellipsis.svg'
 import chevronDown from '../assets/icon-chevron-down.svg'
 import logoLight from '../assets/logo-light.svg';
 import logoDark from '../assets/logo-dark.svg';
-import style from './/navbar.module.scss';
+import style from '../style/navbar.module.scss';
 import { NewTask } from './modals/NewTask'
 import { SelectBoard } from './modals/SelectBoard'
 import { DropDown } from './modals/DropDown'

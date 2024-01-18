@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import style from './viewTask.module.scss';
-import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg'
+import React, { useState } from 'react';
+import style from '../../style/viewTask.module.scss';
+import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { Select } from '../elements/select/Select';
 import { DropDown } from './DropDown';
 import { useBoards } from '../../context/BoardsContext';

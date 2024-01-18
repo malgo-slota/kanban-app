@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import style from './boardGrid.module.scss'
+import style from '../style/boardGrid.module.scss';
 import eyeIcon from '../assets/icon-show-sidebar.svg';
 import { useBoards } from '../context/BoardsContext';
 import { EditBoard } from './modals/EditBoard';

@@ -1,9 +1,9 @@
-import React from 'react'
-import boardIcon from '../../assets/icon-board.svg'
-import sunIcon from '../../assets/icon-light-theme.svg'
-import moonIcon from '../../assets/icon-dark-theme.svg'
+import React from 'react';
+import boardIcon from '../../assets/icon-board.svg';
+import sunIcon from '../../assets/icon-light-theme.svg';
+import moonIcon from '../../assets/icon-dark-theme.svg';
 import sidebarHide from '../../assets/icon-hide-sidebar.svg';
-import style from './selectBoard.module.scss'
+import style from '../../style/selectBoard.module.scss';
 import { NewBoard } from './NewBoard';
 import { useBoards } from '../../context/BoardsContext';
 import logoLight from '../../assets/logo-light.svg';

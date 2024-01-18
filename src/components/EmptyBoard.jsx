@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import style from './emptyBoard.module.scss'
+import style from '../style/emptyBoard.module.scss'
 import { NewBoard } from './modals/NewBoard';
 
 export const EmptyBoard = () => {

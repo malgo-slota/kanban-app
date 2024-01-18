@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './newTask.module.scss'
+import style from '../../style/newTask.module.scss'
 import iconCross from '../../assets/icon-cross.svg'
 import { Select } from '../elements/select/Select'
 import { useBoards } from '../../context/BoardsContext';

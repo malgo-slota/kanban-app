@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './editBoard.module.scss';
+import style from '../../style/editBoard.module.scss';
 import iconCross from '../../assets/icon-cross.svg'
 
 export const EditBoard = () => {

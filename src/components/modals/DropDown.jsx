@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './dropDopwn.module.scss';
+import style from '../../style/dropDopwn.module.scss';
 
 export const DropDown = () => {
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './boardGrid.module.scss';
+import style from '../style/boardGrid.module.scss';
 import { Task } from './Task'
 import { useBoards } from '../context/BoardsContext';
 

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import iconCross from '../../assets/icon-cross.svg'
-import style from "./newBoard.module.scss"
+import style from "../../style/newBoard.module.scss"
 import boardsSlice from '../../redux/boardsSlice'
 import { v4 as uuid } from "uuid";
 
