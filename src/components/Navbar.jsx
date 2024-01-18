@@ -16,6 +16,7 @@ export const Navbar = ( {boardsExist} ) => {
   // const [newTaskModalOpen, setNewTaskModalOpen] = useState(false);
   const [selectBoardModalOpen, setSelectBoardModalOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
 
   const { activeBoard, sidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useBoards();
 
@@ -37,11 +38,10 @@ export const Navbar = ( {boardsExist} ) => {
                       <img src={iconAddTaskMobile} alt=""/>
                       <span className={style["add-task-txt"]}>Add New Task</span>
             </button>
-            <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalElipses} class={style.verticalElipses} alt="open dropdown menu"/></button>
+            <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalElipses} className={style.verticalElipses} alt="open dropdown menu"/></button>
         </div>
-       
        {addTaskModalOpen ? <NewTask /> : ''}
-       {selectBoardModalOpen ? <SelectBoard /> : ''}
+       {selectBoardModalOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
        {dropDownOpen ? <DropDown /> : ''}
     </div>
   )
