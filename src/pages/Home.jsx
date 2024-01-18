@@ -3,17 +3,26 @@ import { Navbar } from '../components/Navbar'
 import { BoardGrid } from '../components/BoardGrid'
 import { SelectBoard } from '../components/modals/SelectBoard'
 import { EmptyBoard } from '../components/EmptyBoard'
-import { useBoards } from '../context/BoardsContext'  
-// import boardsSlice from "../redux/boardsSlice";
-// import { useDispatch, useSelector } from "react-redux";
+import { useModal } from '../context/ModalContext'  
+import boardsSlice from '../redux/boardsSlice'
+import { useDispatch, useSelector } from "react-redux";
 
 export const Home = () => {
+
+    const dispatch = useDispatch();
+    const boards = useSelector((state) => state.boards);
+  
+    const activeBoard = boards.find((board) => board.isActive);
+    if (!activeBoard && boards.length > 0)
+    dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
+
 
     // const [sidebarOpen, setSidebarOpen] = useState(false);
     const [boardsExist, setBoardsExist] = useState(true);
     const [selectedBoard, setSelectedBoard] = useState("Platform Launch");
 
-     const { boards, sidebarOpen } = useBoards();
+    //  const { boards, sidebarOpen } = useBoards();
+       const { sidebarOpen } = useModal();
     
   // const dispatch = useDispatch();
   //   const boards = useSelector((state) => state.boards);

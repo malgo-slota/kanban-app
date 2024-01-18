@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "../../../style/select.module.scss";
-import { useBoards } from "../../../context/BoardsContext";
+import { useSelector } from "react-redux";
 
 // type SelectProps = {
 //     colIndex: number,
@@ -9,16 +9,16 @@ import { useBoards } from "../../../context/BoardsContext";
 
 export const Select = ( { taskIndex, colIndex }) => {
     
-    const { activeBoard } = useBoards();
+    
     const [isOpen, setIsOpen] = useState(false);
-
+    const activeBoard = useSelector((state) => state.boards).find(
+                    (board) => board.isActive
+    );
     let currentStatus = activeBoard.columns[colIndex].tasks[taskIndex].status;
+
     const statusRef = useRef(currentStatus);
     const [newStatus, setNewStatus] = useState(statusRef.current);
     // lift this state up and update column index
-
-
-    
 
     // const columns = activeBoard.columns;
     // const col = columns.find((col, i) => i === colIndex);

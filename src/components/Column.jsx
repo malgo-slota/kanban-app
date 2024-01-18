@@ -1,14 +1,13 @@
 import React from 'react'
 import style from '../style/boardGrid.module.scss';
 import { Task } from './Task'
-import { useBoards } from '../context/BoardsContext';
+import { useSelector } from 'react-redux';
 
 export const Column = ( { colIndex } ) => {
 
-    const { activeBoard } = useBoards();
-
-
-const column = activeBoard.columns.find((col, i) => i === colIndex);
+const boards = useSelector((state) => state.boards);
+const board = boards.find((board) => board.isActive === true);
+const column = board.columns.find((col, i) => i === colIndex);
 
   return (
         <div className={style.column}>

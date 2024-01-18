@@ -5,24 +5,22 @@ import moonIcon from '../../assets/icon-dark-theme.svg';
 import sidebarHide from '../../assets/icon-hide-sidebar.svg';
 import style from '../../style/selectBoard.module.scss';
 import { NewBoard } from './NewBoard';
-import { useBoards } from '../../context/BoardsContext';
+import { useModal } from '../../context/ModalContext';
 import logoLight from '../../assets/logo-light.svg';
 import logoDark from '../../assets/logo-dark.svg';
 import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import boardsSlice from '../../redux/boardsSlice';
 
-export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen} ) => {
+export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
 
-  const current = useSelector((state) => state.boards);
-  const { boards, setActiveBoard, sidebarOpen, setSidebarOpen, closeSidebar } = useBoards();
+  const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boards);
+  const { sidebarOpen, setSidebarOpen, closeSidebar } = useModal();
   // document.body.style.overflow = "hidden";
   // but apply it only on mobile
   document.body.style.position = "fixed";
 
-  const openNewBoard = (board) => {
-    setActiveBoard(board);
-    closeSidebar();
-  };
-  
   return (
     <div className={style["modal-bg"]}>
       <div className={style.modal}>
@@ -31,11 +29,12 @@ export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen} ) => {
             <img src={logoLight} className={style["display-light-logo"]} alt=""/>
             <p>ALL BOARDS ({boards.length})</p>
             <ul className={style["boards-list"]}>
-                {current.map((board, index) => {
+                {boards.map((board, index) => {
                   return (
                     <li key={index} 
-                        onClick={() => openNewBoard(board)}>
-                        <img src={boardIcon} alt=""/><span>{board.name}</span>
+                        onClick={() => {dispatch(boardsSlice.actions.setBoardActive({ index }))}}>
+                        <img src={boardIcon} alt=""/>
+                        <span>{board.name}</span>
                     </li>
                   );
                 })}

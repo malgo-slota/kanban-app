@@ -1,20 +1,22 @@
 import { useState } from 'react'
 import style from '../style/boardGrid.module.scss';
 import eyeIcon from '../assets/icon-show-sidebar.svg';
-import { useBoards } from '../context/BoardsContext';
+import { useModal } from '../context/ModalContext';
 import { EditBoard } from './modals/EditBoard';
 import { Column } from './Column';
+import { useSelector } from 'react-redux';
 
 
 
 export const BoardGrid = () => {
 
-    
-
     const [editBoardOpen, setEditBoardOpen] = useState(false);
 
-    const { activeBoard, sidebarOpen, setSidebarOpen } = useBoards();
+    const { sidebarOpen, setSidebarOpen } = useModal();
 
+    const activeBoard = useSelector((state) => state.boards).find(
+                    (board) => board.isActive
+    );
     const columns = activeBoard.columns;
 
     return (

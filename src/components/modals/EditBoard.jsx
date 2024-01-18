@@ -4,7 +4,7 @@ import iconCross from '../../assets/icon-cross.svg'
 
 export const EditBoard = () => {
 
-        document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
         
   return (
     <div className={style["modal-bg"]}>

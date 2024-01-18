@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import style from '../style/boardGrid.module.scss';
 import { ViewTask } from './modals/ViewTask';
-import { useBoards } from '../context/BoardsContext';
+import { useSelector } from 'react-redux';
 
 export const Task = ( { colIndex, taskIndex } ) => {
 
     const [viewTaskOpen, setViewTaskOpen] = useState(false);
-
-    const { activeBoard } = useBoards();
-
+    
+    const activeBoard = useSelector((state) => state.boards).find(
+                    (board) => board.isActive
+    );
     const columns = activeBoard.columns;
     const col = columns.find((col, i) => i === colIndex);
     const task = col.tasks.find((task, i) => i === taskIndex);

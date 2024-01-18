@@ -9,16 +9,21 @@ import style from '../style/navbar.module.scss';
 import { NewTask } from './modals/NewTask'
 import { SelectBoard } from './modals/SelectBoard'
 import { DropDown } from './modals/DropDown'
-import { useBoards } from '../context/BoardsContext'
+import { useModal } from '../context/ModalContext'
+import { useSelector } from 'react-redux';
 
 export const Navbar = ( {boardsExist} ) => {
+
+   const activeBoard = useSelector((state) => state.boards).find(
+                    (board) => board.isActive
+    );
 
   // const [newTaskModalOpen, setNewTaskModalOpen] = useState(false);
   const [selectBoardModalOpen, setSelectBoardModalOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
 
-  const { activeBoard, sidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useBoards();
+  const { sidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useModal();
 
   return (
     <div className={style.navbar}>

@@ -3,16 +3,16 @@ import style from '../../style/viewTask.module.scss';
 import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { Select } from '../elements/select/Select';
 import { DropDown } from './DropDown';
-import { useBoards } from '../../context/BoardsContext';
+import { useSelector } from 'react-redux';
 
 export const ViewTask = ( { taskIndex, colIndex }) => {
 
     document.body.style.overflow = "hidden";
 
     const [taskMenuOpen, setTaskMenuOpen] = useState(false);
-    const { activeBoard } = useBoards();
-    // const task = activeBoard.columns.tasks.filter((task, i) => i === taskIndex);
-
+    const activeBoard = useSelector((state) => state.boards).find(
+                    (board) => board.isActive
+    );
     const columns = activeBoard.columns;
     const col = columns.find((col, i) => i === colIndex);
     const task = col.tasks.find((task, i) => i === taskIndex);
@@ -39,22 +39,6 @@ export const ViewTask = ( { taskIndex, colIndex }) => {
                     );
                    
                 })}
-
-
-                {/* <div className={style.subtask}>
-                    <input type="checkbox" id="one"></input>
-                    <label htmlFor='one'>Research competitor pricing and business models</label>
-                   
-                </div>
-                <div className={style.subtask}>
-                    <input type="checkbox" id="two"></input>
-                    <label htmlFor='two'>Outline a business model that works for our solution</label>
-                     
-                </div>
-                <div className={style.subtask}>
-                    <input type="checkbox" id="three"></input>
-                    <label htmlFor='three'>Surveying and testing</label>
-                </div> */}
             </div>
             <div className={style["current-status"]}>
                 <p className={style["main-label"]}>Current Status</p>

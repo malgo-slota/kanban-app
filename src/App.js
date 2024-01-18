@@ -1,15 +1,16 @@
 import { Home } from './pages/Home';
-import { BoardsProvider } from './context/BoardsContext';
+import { ModalProvider } from './context/ModalContext';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
 function App() {
+
   return (
     <>
     <Provider store={store}>
-       <BoardsProvider>
+       <ModalProvider>
         <Home />
-      </BoardsProvider>
+      </ModalProvider>
     </Provider>
     </>
   );
