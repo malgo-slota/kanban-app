@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "../../../style/select.module.scss";
 import { useSelector } from "react-redux";
+import chevronDown from '../../../assets/icon-chevron-down.svg';
+import chevronUp from '../../../assets/icon-chevron-up.svg';
 
 // type SelectProps = {
 //     colIndex: number,
@@ -8,7 +10,6 @@ import { useSelector } from "react-redux";
 // }
 
 export const Select = ( { taskIndex, colIndex }) => {
-    
     
     const [isOpen, setIsOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find(
@@ -47,12 +48,13 @@ export const Select = ( { taskIndex, colIndex }) => {
       
 
     return (
-      <div className={styles.container} onClick={e => {
+      <div className={`${styles.container} ${isOpen ? styles.show : ""}`}
+            onClick={e => {
                         e.stopPropagation()
                         setIsOpen(!isOpen)}}>
         {/* clcking on value closes modal ! why */}
           <span className={styles.value}>{newStatus}</span>
-          <div className={styles.caret}></div>
+          <div><img src={chevronDown} alt="show other statuses"/></div>
        
           <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}>
               {/* other available statuses to choose from */}

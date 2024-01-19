@@ -1,4 +1,7 @@
 .container {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #000112;
     position: relative;
     height: 2.5rem;
     padding: 0 1rem;
@@ -8,84 +11,40 @@
     align-items: center;
     gap: .5em;
     outline: none;
+    .value {
+            flex-grow: 1;
+            display: flex;
+            gap: .5em;
+            flex-wrap: wrap;
+    }
+
+    .options {
+            color: #828FA3;
+            line-height: 1.4375rem;
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: none;
+            max-height: 15em;
+            overflow-y: auto;
+            left: 0;
+            right: 0;
+            top: calc(100% + .62rem);
+            background-color: white;
+            z-index: 100;
+            .option {
+                padding: .25em .5em;
+                cursor: pointer;
+            }
+        }
+    .options.show {
+        padding: 1rem;
+        display: block;
+        border-radius: 0.5rem;
+        box-shadow: 0px 10px 20px 0px rgba(54, 78, 126, 0.25);
+    }
 }
-.value {
-    flex-grow: 1;
-    display: flex;
-    gap: .5em;
-    flex-wrap: wrap;
+.container.show {
+    border: 1px solid #635FC7;
 }
-
-.caret {
-    translate: 0 25%;
-    border: .25em solid transparent;
-    border-top-color: #777;
-}
-
-.options {
-    position: absolute;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: none;
-    max-height: 15em;
-    overflow-y: auto;
-    border: .05em solid #777;
-    border-radius: .25em;
-    width: 100%;
-    left: 0;
-    top: calc(100% + .25em);
-    background-color: white;
-    z-index: 100;
-}
-
-.options.show {
-    display: block;
-}
-
-.option {
-    padding: .25em .5em;
-    cursor: pointer;
-}
-
-.option:hover {
-    background-color: #777;
-    color: white;
-}
-
-// .option.selected {
-//     background-color: hsl(200, 100%, 70%);
-// }
-
-// .option.highlighted {
-//     background-color: hsl(200, 100%, 50%);
-//     color: white
-// }
-
-// .option-badge {
-//     display: flex;
-//     align-items: center;
-//     border: .05em solid #777;
-//     border-radius: .25em;
-//     padding: .15em .25em;
-//     gap: .25em;
-//     cursor: pointer;
-//     background: none;
-//     outline: none;
-// }
-
-// .option-badge:hover,
-// .option-badge:focus {
-//     background-color: hsl(0, 100%, 90%);
-//     border-color: hsl(0, 100%, 50%);
-// }
-
-// .option-badge:hover>.remove-btn,
-// .option-badge:focus>.remove-btn {
-//     color: hsl(0, 100%, 50%);
-// }
-
-// .option-badge>.remove-btn {
-//     font-size: 1.25em;
-//     color: #777;
-// }
