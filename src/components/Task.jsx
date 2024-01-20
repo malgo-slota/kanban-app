@@ -19,7 +19,8 @@ export const Task = ( { colIndex, taskIndex } ) => {
         onClick={()=>setViewTaskOpen(!viewTaskOpen)}>
             {viewTaskOpen ? <ViewTask   key={taskIndex} 
                                         taskIndex={taskIndex}
-                                        colIndex={colIndex} /> 
+                                        colIndex={colIndex} 
+                                        /> 
                                         : ''}
         <div className={style["task-name"]}>
             {task.title}

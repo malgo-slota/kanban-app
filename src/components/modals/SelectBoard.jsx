@@ -16,7 +16,7 @@ export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
 
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
-  const { sidebarOpen, setSidebarOpen, closeSidebar } = useModal();
+  const { sidebarOpen, setSidebarOpen } = useModal();
   // document.body.style.overflow = "hidden";
   // but apply it only on mobile
   document.body.style.position = "fixed";

@@ -17,6 +17,7 @@ export const ViewTask = ( { taskIndex, colIndex }) => {
     const col = columns.find((col, i) => i === colIndex);
     const task = col.tasks.find((task, i) => i === taskIndex);
     const subtasks = task.subtasks;
+    const [currentStatus, setCurrentStatus] = useState(task.status);
 
   return (
     <div className={style["modal-bg"]}>
@@ -42,7 +43,7 @@ export const ViewTask = ( { taskIndex, colIndex }) => {
             </div>
             <div className={style["current-status"]}>
                 <p className={style["main-label"]}>Current Status</p>
-                <Select colIndex={colIndex} taskIndex={taskIndex} col={col} task={task}/>
+                <Select prevColIndex={colIndex} taskIndex={taskIndex} currentStatus={currentStatus}/>
             </div>
         </div>
 

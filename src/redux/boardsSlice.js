@@ -25,6 +25,17 @@ const boardsSlice = createSlice ({
                 return board;
             });
         },
+        addNewTask: (state, action) => {
+            const title = action.payload.title;
+            const description = action.payload.description;
+            const status = action.payload.status;
+            const subtasks = action.payload.subtasks;
+            const newColIndex = action.payload.newColIndex;
+            const task = {title, description, status, subtasks};
+            const board = state.find((board) => board.isActive);
+            const column = board.columns.find((col, index) => index === newColIndex);
+            column.tasks.push(task);
+        },
     }
 })
 
