@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import iconCross from '../../assets/icon-cross.svg'
-import style from './editTask.module.scss'
+import style from '../../style/editTask.module.scss'
 import { Select } from '../elements/select/Select'
+import { useDispatch, useSelector } from 'react-redux';
+import boardsSlice from '../../redux/boardsSlice';
 
-export const EditTask = () => {
+export const EditTask = ({taskIndex, colIndex, setModalOpen}) => {
 
+    const dispatch = useDispatch();
+    const activeBoard = useSelector((state) => state.boards).find(
+                (board) => board.isActive
+        );
+    const task = activeBoard.columns[colIndex].tasks[taskIndex];
+
+    const [title, setTitle] = useState(task.title);
+    const [description, setDescription] = useState(task.description);
+    const [status, setStatus] = useState(task.status);
+    const [subtasks, setSubtasks] = useState(task.subtasks);
+
+    const changeTask = (e) => {
+        e.preventDefault();
+        dispatch(boardsSlice.actions.editTask({title, description, colIndex, taskIndex}))
+    }
+    
   return (
-    <div className={style["modal-bg"]}>
+    <div className={style["modal-bg"]}
+        onClick={(e) => {
+                            if (e.target !== e.currentTarget) {
+                                return;
+                            }
+                            setModalOpen(false);
+                        }}>
         <div className={style.modal}>
             <div className={style.header}>
                  <h1>Edit Task</h1>
@@ -14,13 +38,13 @@ export const EditTask = () => {
             <div className={style["task-info"]}>
                 <div>
                     <label>Title</label>
-                    <input type="text" placeholder='e.g.Take coffee break'/>       
+                    <input type="text" placeholder={title}
+                            onChange={(e) => setTitle(e.target.value)}/>       
                 </div>
                 <div>
                     <label>Description</label>
-                    <textarea placeholder='e.g. It’s always good to take a break. This 
-                        15 minute break will  recharge the batteries 
-                        a little.' />
+                    <textarea placeholder={description}
+                        onChange={(e) => setDescription(e.target.value)}/>
                 </div>
             </div>
             <div className={style.subtasks}>
@@ -39,7 +63,10 @@ export const EditTask = () => {
                 <label>Status</label>
                 <Select />
             </div>
-            <button className={style["create-task-btn"]}>Create Task</button>
+            <button className={style["create-task-btn"]}
+                    onClick={(e)=>changeTask(e)}>
+                Save change
+            </button>
         </div>
     </div>
   )

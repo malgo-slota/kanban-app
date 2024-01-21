@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 export const Task = ( { colIndex, taskIndex } ) => {
 
     const [viewTaskOpen, setViewTaskOpen] = useState(false);
-    
     const activeBoard = useSelector((state) => state.boards).find(
                     (board) => board.isActive
     );
@@ -15,8 +14,8 @@ export const Task = ( { colIndex, taskIndex } ) => {
     const task = col.tasks.find((task, i) => i === taskIndex);
 
   return ( 
-    <div className={style["cell-task"]} 
-        onClick={()=>setViewTaskOpen(!viewTaskOpen)}>
+    <div className={style["cell-task"]}
+        onClick={()=>setViewTaskOpen(true)}>
             {viewTaskOpen ? <ViewTask   key={taskIndex} 
                                         taskIndex={taskIndex}
                                         colIndex={colIndex} 

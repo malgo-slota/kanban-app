@@ -10,6 +10,8 @@ type ModalContext = {
    closeSidebar: () => void,
    addTaskModalOpen: boolean,
    setAddTaskModalOpen: (addTaskModalOpen: boolean) => void,
+   viewTaskModalOpen: boolean,
+   setViewTaskModalOpen: (viewTaskModalOpen: boolean) => void,
 }
 
 const ModalContext = createContext({} as ModalContext);
@@ -22,6 +24,7 @@ export function ModalProvider({children} : ModalProviderProps) {
   
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [addTaskModalOpen ,setAddTaskModalOpen] = useState(false);
+    const [viewTaskModalOpen, setViewTaskModalOpen] = useState(false);
 
     const closeSidebar = () => {
         setSidebarOpen(false)
@@ -34,6 +37,8 @@ export function ModalProvider({children} : ModalProviderProps) {
                                     closeSidebar,
                                     addTaskModalOpen,
                                     setAddTaskModalOpen,
+                                    viewTaskModalOpen,
+                                    setViewTaskModalOpen
                                     }}>
         {children}
     </ModalContext.Provider>

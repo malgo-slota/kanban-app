@@ -9,7 +9,7 @@ export const ViewTask = ( { taskIndex, colIndex }) => {
 
     document.body.style.overflow = "hidden";
 
-    const [taskMenuOpen, setTaskMenuOpen] = useState(false);
+    const [dropdownOpen, setDropDownOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find(
                     (board) => board.isActive
     );
@@ -19,14 +19,16 @@ export const ViewTask = ( { taskIndex, colIndex }) => {
     const subtasks = task.subtasks;
     const [currentStatus, setCurrentStatus] = useState(task.status);
 
+    const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
+
   return (
     <div className={style["modal-bg"]}>
         <div className={style.modal}>
             <div className={style.header}>
                 <h1>{task.title}</h1>
-                {/* <h1>Research pricing points of various competitors and trial different business models</h1> */}
-                <button onClick={() => setTaskMenuOpen(!taskMenuOpen)}><img src={verticalEllipsis} alt="open dropdown menu"/></button>
-                {taskMenuOpen ? <DropDown /> : ''}
+                <button onClick={() => setDropDownOpen(!dropdownOpen)}><img src={verticalEllipsis} alt="open dropdown menu"/></button>
+                {dropdownOpen ? <DropDown modalOpen={editTaskModalOpen} setModalOpen={setEditTaskModalOpen} type="Task" 
+                                        colIndex={colIndex} taskIndex={taskIndex}/> : ''}
             </div>
             <p>{task.description}</p>
             <div>

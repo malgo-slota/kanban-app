@@ -63,7 +63,7 @@ export const NewTask = () => {
                     <div className={style.field}>
                         <label>Title</label>
                         <input type="text" placeholder='e.g.Take coffee break'
-                                onChange= {(e) => setTitle(e.target.value)}/>       
+                                onChange={(e) => setTitle(e.target.value)}/>       
                     </div>
                     <div className={style.field}>
                         <label>Description</label>

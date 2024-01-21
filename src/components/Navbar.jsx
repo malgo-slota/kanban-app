@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import logoMobile from '../assets/logo-mobile.svg'
 import iconAddTaskMobile from '../assets/icon-add-task-mobile.svg'
-import verticalElipses from '../assets/icon-vertical-ellipsis.svg'
+import verticalEllipsis from '../assets/icon-vertical-ellipsis.svg'
 import chevronDown from '../assets/icon-chevron-down.svg'
 import logoLight from '../assets/logo-light.svg';
 import logoDark from '../assets/logo-dark.svg';
@@ -21,6 +21,7 @@ export const Navbar = ( {boardsExist} ) => {
   // const [newTaskModalOpen, setNewTaskModalOpen] = useState(false);
   const [selectBoardModalOpen, setSelectBoardModalOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
+  const [editBoardModalOpen, setEditBoardModalOpen] = useState(false);
   const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
 
   const { sidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useModal();
@@ -43,11 +44,11 @@ export const Navbar = ( {boardsExist} ) => {
                       <img src={iconAddTaskMobile} alt=""/>
                       <span className={style["add-task-txt"]}>Add New Task</span>
             </button>
-            <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalElipses} className={style.verticalElipses} alt="open dropdown menu"/></button>
+            <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalEllipsis} className={style.verticalElipses} alt="open dropdown menu"/></button>
         </div>
        {addTaskModalOpen ? <NewTask /> : ''}
        {selectBoardModalOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
-       {dropDownOpen ? <DropDown /> : ''}
+       {dropDownOpen ? <DropDown setModalOpen={setEditBoardModalOpen} modalOpen={editBoardModalOpen} type={"Board"}/> : ''}
     </div>
   )
 }

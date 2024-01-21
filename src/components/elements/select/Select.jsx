@@ -3,7 +3,7 @@ import styles from "../../../style/select.module.scss";
 import { useSelector } from "react-redux";
 import chevronDown from '../../../assets/icon-chevron-down.svg';
 
-export const Select = ( { taskIndex, prevColIndex, currentStatus, newColIndex, setNewColIndex }) => {
+export const Select = ( { taskIndex, prevColIndex, currentStatus, colIndex, newColIndex, setNewColIndex }) => {
     
     const [isOpen, setIsOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find(

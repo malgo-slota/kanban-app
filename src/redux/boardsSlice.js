@@ -36,6 +36,21 @@ const boardsSlice = createSlice ({
             const column = board.columns.find((col, index) => index === newColIndex);
             column.tasks.push(task);
         },
+        editTask: (state, action) => {
+            const title = action.payload.title;
+            const description = action.payload.description;
+            // // const status = action.payload.status;
+            // // const subtasks = action.payload.subtasks;
+            const colIndex = action.payload.colIndex;
+            const taskIndex = action.payload.taskIndex;
+            const board = state.find((board) => board.isActive);
+            const column = board.columns[colIndex];
+            const task = column.tasks[taskIndex];
+            task.title = title;
+            task.description = description;
+            // task.status = status;
+            // editedTask.subtasks = subtasks;            
+        },
     }
 })
 
