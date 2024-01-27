@@ -22,7 +22,7 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
     const col = columns.find((col, i) => i === colIndex);
     const task = col.tasks.find((task, i) => i === taskIndex);
     const subtasks = task.subtasks;
-    const [currentStatus, setCurrentStatus] = useState(task.status);
+    const [status, setStatus] = useState(task.status);
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
 
     const setOpenEditModal = () => {
@@ -59,7 +59,9 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
                 {editTaskModalOpen ? createPortal(
                                             <EditTask   taskIndex={taskIndex} 
                                                         colIndex={colIndex} 
-                                                        setEditTaskModalOpen={setEditTaskModalOpen}/>,
+                                                        setEditTaskModalOpen={setEditTaskModalOpen}
+                                                        status={status}
+                                                        setStatus={setStatus}/>,
                                             document.body
                 ) : ''}
             </div>
@@ -87,7 +89,8 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
                 </p>
                 <Select prevColIndex={colIndex} 
                         taskIndex={taskIndex} 
-                        currentStatus={currentStatus}/>
+                        status={status}
+                        setStatus={setStatus}/>
             </div>
         </div>
     </div>

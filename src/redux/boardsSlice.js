@@ -39,7 +39,7 @@ const boardsSlice = createSlice ({
         editTask: (state, action) => {
             const title = action.payload.title;
             const description = action.payload.description;
-            // // const status = action.payload.status;
+            const status = action.payload.status;
             const subtasks = action.payload.subtasks;
             const colIndex = action.payload.colIndex;
             const taskIndex = action.payload.taskIndex;
@@ -48,7 +48,7 @@ const boardsSlice = createSlice ({
             const task = column.tasks[taskIndex];
             task.title = title;
             task.description = description;
-            // task.status = status;
+            task.status = status;
             task.subtasks = subtasks;            
         },
     }

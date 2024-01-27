@@ -3,7 +3,13 @@ import styles from "../../../style/select.module.scss";
 import { useSelector } from "react-redux";
 import chevronDown from '../../../assets/icon-chevron-down.svg';
 
-export const Select = ( { taskIndex, prevColIndex, currentStatus, colIndex, newColIndex, setNewColIndex }) => {
+export const Select = ( { taskIndex, 
+                          prevColIndex, 
+                          status, 
+                          setStatus,
+                          colIndex, 
+                          newColIndex, 
+                          setNewColIndex }) => {
     
     const [isOpen, setIsOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find(
@@ -13,13 +19,14 @@ export const Select = ( { taskIndex, prevColIndex, currentStatus, colIndex, newC
     // const col = columns.find((col, i) => i === colIndex);
     // const task = col.tasks.find((task, i) => i === taskIndex);
     const statusRef = useRef(columns.name);
-    const [newStatus, setNewStatus] = useState(currentStatus);
+    const [newStatus, setNewStatus] = useState(status);
     // lift this state up and update column index
 
       useEffect(() => {
         statusRef.current = newStatus;
         console.log(newStatus);
-        console.log(statusRef);
+        // console.log(statusRef.current);
+        setStatus(newStatus);
       }, [newStatus])
       
 
@@ -28,8 +35,9 @@ export const Select = ( { taskIndex, prevColIndex, currentStatus, colIndex, newC
             onClick={e => {
                         e.stopPropagation()
                         setIsOpen(!isOpen)}}>
-          <span className={styles.value} 
-                placeholder={newStatus}></span>
+          <span className={styles.value}>
+            {newStatus}
+          </span>
           <div><img src={chevronDown} alt="show other statuses"/></div>
        
           <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}>
@@ -41,7 +49,7 @@ export const Select = ( { taskIndex, prevColIndex, currentStatus, colIndex, newC
                           e.stopPropagation();
                           setNewStatus(option.name);
                           setIsOpen(false);
-                          setNewColIndex(index);
+                          // setNewColIndex(index);
                         }}
                         >
                           {option.name}
