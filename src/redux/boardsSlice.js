@@ -40,7 +40,7 @@ const boardsSlice = createSlice ({
             const title = action.payload.title;
             const description = action.payload.description;
             // // const status = action.payload.status;
-            // // const subtasks = action.payload.subtasks;
+            const subtasks = action.payload.subtasks;
             const colIndex = action.payload.colIndex;
             const taskIndex = action.payload.taskIndex;
             const board = state.find((board) => board.isActive);
@@ -49,7 +49,7 @@ const boardsSlice = createSlice ({
             task.title = title;
             task.description = description;
             // task.status = status;
-            // editedTask.subtasks = subtasks;            
+            task.subtasks = subtasks;            
         },
     }
 })

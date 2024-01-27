@@ -21,22 +21,25 @@ export const NewTask = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [status, setStatus] = useState("");
-    //status first column name of the active board?
     const [subtasks, setSubtasks] = useState([
         { title: "first task", isCompleted: false, id: uuid() },
         { title: "second task", isCompleted: false, id: uuid() },
     ]);
 
     const [newColIndex, setNewColIndex] = useState(0);
-
-    // const [status, setStatus] = useState(columns[prevColIndex].name);
  
     const createNewTask = (e) => {
-        dispatch(boardsSlice.actions.addNewTask({title, description, status, subtasks, newColIndex}))
+        dispatch(boardsSlice.actions.addNewTask({
+                                                    title, 
+                                                    description, 
+                                                    status, 
+                                                    subtasks, 
+                                                    newColIndex
+                                                }))
         e.preventDefault();
-    }
+    };
 
-      const addNewSubtask = (e) => {
+    const addNewSubtask = (e) => {
         e.preventDefault();
         setSubtasks((state) => [
                             ...state,
@@ -45,10 +48,18 @@ export const NewTask = () => {
     };
 
     const removeSubtask = (id) => {
-         setSubtasks((prevState) => prevState.filter((el) => el.id !== id));
-    }
+        setSubtasks((prevState) => prevState.filter((el) => el.id !== id));
+    };
 
-    
+    const subtaskHandle = (id, value) => {
+        setSubtasks((prevState)=>{
+            const newState = [...prevState];
+            const subtask = newState.find((subtask) => subtask.id === id);
+            subtask.title = value;
+            return newState;
+        })
+    };
+
     return (
         <div className={style["modal-bg"]}
                 onClick={(e) => {
@@ -62,22 +73,25 @@ export const NewTask = () => {
                     <h1>Add New Task</h1>
                     <div className={style.field}>
                         <label>Title</label>
-                        <input type="text" placeholder='e.g.Take coffee break'
+                        <input  type="text" 
+                                placeholder='e.g.Take coffee break'
                                 onChange={(e) => setTitle(e.target.value)}/>       
                     </div>
                     <div className={style.field}>
                         <label>Description</label>
-                        <textarea placeholder='e.g. It’s always good to take a break. This 
+                        <textarea   placeholder='e.g. It’s always good to take a break. This 
                                                 15 minute break will  recharge the batteries 
                                                 a little.' 
-                                onChange= {(e) => setDescription(e.target.value)}/>
+                                    onChange= {(e) => setDescription(e.target.value)}/>
                     </div>
                     <div className={style.subtasks}>
                         <label>Subtasks</label>
                         {subtasks.map((subtask) => {
                             return (
                                 <div>
-                                    <input type="text" placeholder='' />
+                                    <input  type="text" 
+                                            placeholder='' 
+                                            onChange={(e) => subtaskHandle(subtask.id ,e.target.value)}/>
                                     <button onClick={() => removeSubtask(subtask.id)}>
                                         <img src={iconCross} alt="delete subtask"/>
                                     </button>
@@ -85,17 +99,21 @@ export const NewTask = () => {
                             );  
                         })}
                         <button className={style["add-new-subtask-btn"]}
-                                onClick={(e) => addNewSubtask(e)}
-                        >+ Add New Subtask</button>
+                                onClick={(e) => addNewSubtask(e)}>
+                                + Add New Subtask
+                        </button>
                     </div>
                 
                     <div>
                         <label>Status</label>
-                        <Select taskIndex={1} colIndex={1} newColIndex={newColIndex} setNewColIndex={setNewColIndex}/>
+                        <Select taskIndex={1} 
+                                colIndex={1} 
+                                newColIndex={newColIndex} 
+                                setNewColIndex={setNewColIndex}/>
                     </div>
                     <button className={style["create-task-btn"]}
                             onClick={(e) => createNewTask(e)}>
-                                Create Task
+                            Create Task
                     </button>
                 </div>
             </div>

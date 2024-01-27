@@ -5,7 +5,6 @@ import { Select } from '../elements/select/Select';
 import { DropDown } from './DropDown';
 import { useSelector } from 'react-redux';
 import { EditTask } from './EditTask';
-import { ReactPortal } from 'react';
 import { createPortal } from 'react-dom';
 
 export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }) => {
@@ -24,63 +23,37 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
 
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
 
-// const onClose = (e) => {
-//     if (e.target !== e.currentTarget) {
-//       return;
-//     }
-//     // dispatch(
-//     //   boardsSlice.actions.setTaskStatus({
-//     //     taskIndex,
-//     //     colIndex,
-//     //     newColIndex,
-//     //     status,
-//     //   })
-//     // );
-//     setViewTaskOpen(false)
-//   };
+    const setOpenEditModal = () => {
+        setEditTaskModalOpen(true);
+        setDropDownOpen(false)
+    };
 
-   const setOpenEditModal = () => {
-    // setEditModalTaskModalOpen(true);
-    setEditTaskModalOpen(true);
-    setDropDownOpen(false)
-    // && type === "Task"
-    // if(editTaskModalOpen) {
-        // createPortal(
-        //     <EditTask taskIndex={taskIndex} colIndex={colIndex} setEditTaskModalOpen={setEditTaskModalOpen}/>,
-        //     document.body
-        // )
-    //  <EditTask taskIndex={taskIndex} colIndex={colIndex} setEditTaskModalOpen={setEditTaskModalOpen}/> : '';
-  }
-//   alert("hi");
-
-
-  const setOpenDeleteModal = () => {
-    setDropDownOpen(false)
-    // setIsDeleteModalOpen(true)
-  };
-
+    const setOpenDeleteModal = () => {
+        setDropDownOpen(false)
+        // setIsDeleteModalOpen(true)
+    };
 
   return (
     <div className={style["modal-bg"]}
             onClick={(e) => {
-                            if (e.target !== e.currentTarget) {
-                                return;
-                            }
-                            setViewTaskOpen(!viewTaskOpen);
-                            // alert("why");
-                        }}>
+                                if (e.target !== e.currentTarget) {
+                                    return;
+                                }
+                                setViewTaskOpen(!viewTaskOpen);
+                            }}>
         <div className={style.modal}>
             <div className={style.header}>
                 <h1>{task.title}</h1>
-                <button onClick={() => setDropDownOpen(!dropdownOpen)}><img src={verticalEllipsis} alt="open dropdown menu"/></button>
-                {dropdownOpen ? <DropDown 
-                                        editTaskmodalOpen={editTaskModalOpen} 
-                                        setEditTaskModalOpen={setEditTaskModalOpen} 
-                                        type="Task" 
-                                        colIndex={colIndex} taskIndex={taskIndex}
-                                        setOpenEditModal={setOpenEditModal}
-                                        setOpenDeleteModal={setOpenDeleteModal}
-                                        /> : ''}
+                <button onClick={() => setDropDownOpen(!dropdownOpen)}>
+                    <img src={verticalEllipsis} alt="open dropdown menu"/>
+                </button>
+                {dropdownOpen ? <DropDown   editTaskmodalOpen={editTaskModalOpen} 
+                                            setEditTaskModalOpen={setEditTaskModalOpen} 
+                                            type="Task" 
+                                            colIndex={colIndex} taskIndex={taskIndex}
+                                            setOpenEditModal={setOpenEditModal}
+                                            setOpenDeleteModal={setOpenDeleteModal}
+                                            /> : ''}
                 {editTaskModalOpen ? createPortal(
                                             <EditTask   taskIndex={taskIndex} 
                                                         colIndex={colIndex} 
@@ -90,23 +63,31 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
             </div>
             <p>{task.description}</p>
             <div>
-                <p className={style["main-label"]}>Subtasks (2 of {subtasks.length})</p>
+                <p className={style["main-label"]}>
+                    Subtasks (2 of {subtasks.length})
+                </p>
                 {subtasks.map((subtask) => {
                     return (
                         <div className={style.subtask}>
-                            <input type="checkbox" id="one" checked={subtask.isCompleted}></input>
-                            <label htmlFor='one'>{subtask.title}</label>
+                            <input  type="checkbox" 
+                                    id="one" 
+                                    defaultChecked={subtask.isCompleted}/>
+                            <label htmlFor='one'>
+                                {subtask.title}
+                            </label>
                         </div>
                     );
-                   
                 })}
             </div>
             <div className={style["current-status"]}>
-                <p className={style["main-label"]}>Current Status</p>
-                <Select prevColIndex={colIndex} taskIndex={taskIndex} currentStatus={currentStatus}/>
+                <p className={style["main-label"]}>
+                    Current Status
+                </p>
+                <Select prevColIndex={colIndex} 
+                        taskIndex={taskIndex} 
+                        currentStatus={currentStatus}/>
             </div>
         </div>
-
     </div>
   )
 }
