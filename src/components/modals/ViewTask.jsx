@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from '../../style/viewTask.module.scss';
 import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { Select } from '../elements/select/Select';
@@ -9,7 +9,10 @@ import { createPortal } from 'react-dom';
 
 export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }) => {
 
-    document.body.style.overflow = "hidden";
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => document.body.style.overflow = 'unset';
+    }, []);
 
     const [dropdownOpen, setDropDownOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find(
@@ -20,7 +23,6 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
     const task = col.tasks.find((task, i) => i === taskIndex);
     const subtasks = task.subtasks;
     const [currentStatus, setCurrentStatus] = useState(task.status);
-
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
 
     const setOpenEditModal = () => {

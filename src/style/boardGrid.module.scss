@@ -1,13 +1,14 @@
 .grid {
     overflow-x: scroll;
+    overflow-y: scroll;
     display: grid;
     grid-auto-columns: 17.5rem;
     grid-auto-flow: column;
     gap: 1.5rem;
     margin: 0.5rem 0rem;
-    &::-webkit-scrollbar {
-        display: none;
-    }
+    // &::-webkit-scrollbar {
+    //     display: none;
+    // }
     @media (min-width: 768px) {
         margin: 0.45rem 0.5rem;
     }

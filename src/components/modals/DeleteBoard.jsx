@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from '../style/deleteModal.module.scss'
 
 export const DeleteBoard = () => {
 
-      document.body.style.overflow = "hidden";
+   useEffect(() => {
+            document.body.style.overflow = 'hidden';
+            return () => document.body.style.overflow = 'unset';
+    }, []);
       
   return (
     <div className={style["modal-bg"]}>

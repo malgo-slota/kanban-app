@@ -19,6 +19,8 @@ export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
   const { sidebarOpen, setSidebarOpen } = useModal();
   // document.body.style.overflow = "hidden";
   // but apply it only on mobile
+  // ISSUE from desktop to moblie withous closing component 
+  // and scrolling when sidebar open on desktop
   document.body.style.position = "fixed";
 
   return (

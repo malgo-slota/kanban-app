@@ -7,8 +7,6 @@ import { v4 as uuid } from "uuid";
 
 export const NewBoard = ({setIsBoardModalOpen}) => {
 
-    document.body.style.overflow = "hidden";
-
     const dispatch = useDispatch();
     const current = useSelector((state) => state.boards);
     const [boardName, setBoardName] = useState("");

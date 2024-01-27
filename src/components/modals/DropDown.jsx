@@ -5,8 +5,6 @@ import { EditTask } from './EditTask';
 
 export const DropDown = ({editTaskModalOpen, setEditTaskModalOpen, type, colIndex, taskIndex, setOpenEditModal}) => {
 
-      document.body.style.overflow = "hidden";
-
   return (
     <div className={style.modal}>
         <button  onClick={()=>setOpenEditModal()}>
