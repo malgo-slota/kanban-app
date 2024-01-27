@@ -14,19 +14,22 @@ export const Task = ( { colIndex, taskIndex } ) => {
     const task = col.tasks.find((task, i) => i === taskIndex);
 
   return ( 
-    <div className={style["cell-task"]}
-        onClick={()=>setViewTaskOpen(true)}>
+    <div className={style["cell-task"]}>
             {viewTaskOpen ? <ViewTask   key={taskIndex} 
                                         taskIndex={taskIndex}
                                         colIndex={colIndex} 
+                                        viewTaskOpen={viewTaskOpen}
+                                        setViewTaskOpen={setViewTaskOpen}
                                         /> 
                                         : ''}
-        <div className={style["task-name"]}>
+      <div className={style.wrapper} onClick={() => setViewTaskOpen(!viewTaskOpen)}>
+          <div className={style["task-name"]}>
             {task.title}
-        </div>
-        <div className={style.substask}>
-            0 of {task.subtasks.length} subtasks
-        </div>
+          </div>
+          <div className={style.substask}>
+              0 of {task.subtasks.length} subtasks
+          </div>
+      </div>                   
     </div>
   )
 }

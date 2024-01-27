@@ -5,7 +5,7 @@ import { Select } from '../elements/select/Select'
 import { useDispatch, useSelector } from 'react-redux';
 import boardsSlice from '../../redux/boardsSlice';
 
-export const EditTask = ({taskIndex, colIndex, setModalOpen}) => {
+export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen}) => {
 
     const dispatch = useDispatch();
     const activeBoard = useSelector((state) => state.boards).find(
@@ -29,7 +29,7 @@ export const EditTask = ({taskIndex, colIndex, setModalOpen}) => {
                             if (e.target !== e.currentTarget) {
                                 return;
                             }
-                            setModalOpen(false);
+                            setEditTaskModalOpen(false);
                         }}>
         <div className={style.modal}>
             <div className={style.header}>

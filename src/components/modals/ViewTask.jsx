@@ -4,8 +4,11 @@ import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { Select } from '../elements/select/Select';
 import { DropDown } from './DropDown';
 import { useSelector } from 'react-redux';
+import { EditTask } from './EditTask';
+import { ReactPortal } from 'react';
+import { createPortal } from 'react-dom';
 
-export const ViewTask = ( { taskIndex, colIndex }) => {
+export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }) => {
 
     document.body.style.overflow = "hidden";
 
@@ -21,14 +24,69 @@ export const ViewTask = ( { taskIndex, colIndex }) => {
 
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
 
+// const onClose = (e) => {
+//     if (e.target !== e.currentTarget) {
+//       return;
+//     }
+//     // dispatch(
+//     //   boardsSlice.actions.setTaskStatus({
+//     //     taskIndex,
+//     //     colIndex,
+//     //     newColIndex,
+//     //     status,
+//     //   })
+//     // );
+//     setViewTaskOpen(false)
+//   };
+
+   const setOpenEditModal = () => {
+    // setEditModalTaskModalOpen(true);
+    setEditTaskModalOpen(true);
+    setDropDownOpen(false)
+    // && type === "Task"
+    // if(editTaskModalOpen) {
+        // createPortal(
+        //     <EditTask taskIndex={taskIndex} colIndex={colIndex} setEditTaskModalOpen={setEditTaskModalOpen}/>,
+        //     document.body
+        // )
+    //  <EditTask taskIndex={taskIndex} colIndex={colIndex} setEditTaskModalOpen={setEditTaskModalOpen}/> : '';
+  }
+//   alert("hi");
+
+
+  const setOpenDeleteModal = () => {
+    setDropDownOpen(false)
+    // setIsDeleteModalOpen(true)
+  };
+
+
   return (
-    <div className={style["modal-bg"]}>
+    <div className={style["modal-bg"]}
+            onClick={(e) => {
+                            if (e.target !== e.currentTarget) {
+                                return;
+                            }
+                            setViewTaskOpen(!viewTaskOpen);
+                            // alert("why");
+                        }}>
         <div className={style.modal}>
             <div className={style.header}>
                 <h1>{task.title}</h1>
                 <button onClick={() => setDropDownOpen(!dropdownOpen)}><img src={verticalEllipsis} alt="open dropdown menu"/></button>
-                {dropdownOpen ? <DropDown modalOpen={editTaskModalOpen} setModalOpen={setEditTaskModalOpen} type="Task" 
-                                        colIndex={colIndex} taskIndex={taskIndex}/> : ''}
+                {dropdownOpen ? <DropDown 
+                                        editTaskmodalOpen={editTaskModalOpen} 
+                                        setEditTaskModalOpen={setEditTaskModalOpen} 
+                                        type="Task" 
+                                        colIndex={colIndex} taskIndex={taskIndex}
+                                        setOpenEditModal={setOpenEditModal}
+                                        setOpenDeleteModal={setOpenDeleteModal}
+                                        /> : ''}
+                {editTaskModalOpen ? createPortal(
+                                            <EditTask   taskIndex={taskIndex} 
+                                                        colIndex={colIndex} 
+                                                        setEditTaskModalOpen={setEditTaskModalOpen}/>,
+                                            document.body
+                ) : ''}
             </div>
             <p>{task.description}</p>
             <div>
