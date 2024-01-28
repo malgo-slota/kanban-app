@@ -18,12 +18,12 @@ export const NewTask = () => {
     const activeBoard = useSelector((state) => state.boards).find(
                 (board) => board.isActive
         );
-    const column = activeBoard.column;
+    const columns = activeBoard.columns;
 
     const { setAddTaskModalOpen } = useModal();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState(activeBoard.columns[0].name);
     const [subtasks, setSubtasks] = useState([
         { title: "first task", isCompleted: false, id: uuid() },
         { title: "second task", isCompleted: false, id: uuid() },
@@ -111,6 +111,8 @@ export const NewTask = () => {
                         <label>Status</label>
                         <Select taskIndex={1} 
                                 colIndex={1} 
+                                status={status}
+                                setStatus={setStatus}
                                 newColIndex={newColIndex} 
                                 setNewColIndex={setNewColIndex}/>
                     </div>

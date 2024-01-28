@@ -49,7 +49,7 @@ export const Select = ( { taskIndex,
                           e.stopPropagation();
                           setNewStatus(option.name);
                           setIsOpen(false);
-                          // setNewColIndex(index);
+                          setNewColIndex(index);
                         }}
                         >
                           {option.name}
