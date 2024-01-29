@@ -10,11 +10,7 @@
     align-items: center;
     justify-content: center;
     .modal {
-        overflow: scroll;
-        
-            &::-webkit-scrollbar {
-                display: none;
-            }
+        overflow-y: scroll;
         // position: ;
         background: #fff;
         border-radius: 6px;

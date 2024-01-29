@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import style from '../../style/newTask.module.scss'
 import iconCross from '../../assets/icon-cross.svg'
 import { Select } from '../elements/select/Select'
@@ -8,11 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import boardsSlice from '../../redux/boardsSlice';
 
 export const NewTask = () => {
-
-    useEffect(() => {
-            document.body.style.overflow = 'hidden';
-            return () => document.body.style.overflow = 'unset';
-    }, []);
 
     const dispatch = useDispatch();
     const activeBoard = useSelector((state) => state.boards).find(

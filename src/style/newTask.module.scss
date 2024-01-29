@@ -6,15 +6,11 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.50);
     display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     .modal {
-        overflow: scroll;
-        
-            &::-webkit-scrollbar {
-                display: none;
-            }
+        overflow-y: scroll;
         // position: relative;
         // top: 9.75rem;
         // left: 0;

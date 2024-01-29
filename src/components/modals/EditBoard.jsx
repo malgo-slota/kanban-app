@@ -1,13 +1,7 @@
-import React, { useEffect } from 'react'
 import style from '../../style/editBoard.module.scss';
 import iconCross from '../../assets/icon-cross.svg'
 
 export const EditBoard = () => {
-
-    useEffect(() => {
-            document.body.style.overflow = 'hidden';
-            return () => document.body.style.overflow = 'unset';
-    }, []);
         
   return (
     <div className={style["modal-bg"]}>

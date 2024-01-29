@@ -21,7 +21,6 @@ export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
   // but apply it only on mobile
   // ISSUE from desktop to moblie withous closing component 
   // and scrolling when sidebar open on desktop
-  document.body.style.position = "fixed";
 
   return (
     <div className={style["modal-bg"]}>

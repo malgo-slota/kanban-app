@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import style from '../../style/viewTask.module.scss';
 import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { Select } from '../elements/select/Select';
@@ -8,11 +8,6 @@ import { EditTask } from './EditTask';
 import { createPortal } from 'react-dom';
 
 export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }) => {
-
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
-        return () => document.body.style.overflow = 'unset';
-    }, []);
 
     const [dropdownOpen, setDropDownOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find(
