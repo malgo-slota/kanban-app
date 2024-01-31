@@ -15,14 +15,10 @@ export const Home = () => {
     const activeBoard = boards.find((board) => board.isActive);
     if (!activeBoard && boards.length > 0)
     dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
-
-
-    // const [sidebarOpen, setSidebarOpen] = useState(false);
     const [boardsExist, setBoardsExist] = useState(true);
     const [selectedBoard, setSelectedBoard] = useState("Platform Launch");
 
-    //  const { boards, sidebarOpen } = useBoards();
-       const { sidebarOpen } = useModal();
+    const { sidebarOpen } = useModal();
     
   // const dispatch = useDispatch();
   //   const boards = useSelector((state) => state.boards);
@@ -30,23 +26,14 @@ export const Home = () => {
 
   return (
     <div>
-        <Navbar 
-                // sidebarOpen={sidebarOpen} 
-                // setSidebarOpen={setSidebarOpen} 
-                boardsExist={boardsExist} 
+        <Navbar boardsExist={boardsExist} 
                 selectedBoard={selectedBoard}
                 />
-        {boardsExist ?  <BoardGrid boards={boards} 
-                                    // sidebarOpen={sidebarOpen} 
-                                    // setSidebarOpen={setSidebarOpen}
-                                    /> : <EmptyBoard />}
+        {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />}
        
-        {sidebarOpen ? <SelectBoard 
-                                    // sidebarOpen={sidebarOpen} 
-                                    // setSidebarOpen={setSidebarOpen} 
-                                    selectedBoard={selectedBoard}
+        {/* {sidebarOpen ? <SelectBoard selectedBoard={selectedBoard}
                                     setSelectedBoard={setSelectedBoard} 
-                                    /> : ''}
+                                    /> : ''} */}
     </div>
   )
 }

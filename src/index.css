@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -19,11 +20,12 @@ body {
   -moz-osx-font-smoothing: grayscale; */
   background: #F4F7FD;
   color: #000112;
+  overscroll-behavior: none;
 }
 
-body.modal-open {
+/* body.modal-open {
   overflow-y: hidden;
-}
+} */
 
 button {
   font-family: Plus Jakarta Sans;

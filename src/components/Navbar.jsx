@@ -31,6 +31,7 @@ export const Navbar = ( {boardsExist} ) => {
   return (
     <div className={style.navbar}>
         <div className={`${style["navbar-left"]}`}>
+            {sidebarOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
             <img src={logoMobile} className={style["display-mobile-logo"]} alt=""/>
             <img src={logoDark} className={style["display-dark-logo"]} alt=""/>
             <img src={logoLight} className={style["display-light-logo"]} alt=""/>
@@ -44,11 +45,12 @@ export const Navbar = ( {boardsExist} ) => {
                         alt="select board"/>
               </button> 
               {/* opens bigger screen menu, breakpoint at 768px */}
-              <button className={style["show-sidebar"]}
+              {!sidebarOpen &&  
+                <button className={style["show-sidebar"]}
                       onClick={() => setSidebarOpen(!sidebarOpen)}>
                   <img  src={eyeIcon}  
                         alt="open sidebar menu"/>
-              </button> 
+                </button> }
             </div> 
         </div>
         <div className={style["navbar-right"]}>
@@ -61,7 +63,6 @@ export const Navbar = ( {boardsExist} ) => {
             <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalEllipsis} className={style.verticalElipses} alt="open dropdown menu"/></button>
         </div>
        {addTaskModalOpen ? <NewTask /> : ''}
-       {sidebarOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
        {dropDownOpen ? <DropDown setModalOpen={setEditBoardModalOpen} modalOpen={editBoardModalOpen} type={"Board"}/> : ''}
     </div>
   )
