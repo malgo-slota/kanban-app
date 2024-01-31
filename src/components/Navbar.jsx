@@ -3,6 +3,7 @@ import logoMobile from '../assets/logo-mobile.svg'
 import iconAddTaskMobile from '../assets/icon-add-task-mobile.svg'
 import verticalEllipsis from '../assets/icon-vertical-ellipsis.svg'
 import chevronDown from '../assets/icon-chevron-down.svg'
+import chevronUp from '../assets/icon-chevron-up.svg';
 import logoLight from '../assets/logo-light.svg';
 import logoDark from '../assets/logo-dark.svg';
 import style from '../style/navbar.module.scss';
@@ -11,6 +12,8 @@ import { SelectBoard } from './modals/SelectBoard'
 import { DropDown } from './modals/DropDown'
 import { useModal } from '../context/ModalContext'
 import { useSelector } from 'react-redux';
+import eyeIcon from '../assets/icon-show-sidebar.svg';
+
 
 export const Navbar = ( {boardsExist} ) => {
 
@@ -19,12 +22,11 @@ export const Navbar = ( {boardsExist} ) => {
     );
 
   // const [newTaskModalOpen, setNewTaskModalOpen] = useState(false);
-  const [selectBoardModalOpen, setSelectBoardModalOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [editBoardModalOpen, setEditBoardModalOpen] = useState(false);
   const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
 
-  const { sidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useModal();
+  const { sidebarOpen, setSidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useModal();
 
   return (
     <div className={style.navbar}>
@@ -35,7 +37,18 @@ export const Navbar = ( {boardsExist} ) => {
             <span className={style["vertical-line"]}></span>
             <div className={style["board-name"]}>
               <span className={sidebarOpen ? style.isOpen : ''}>{activeBoard.name}</span>
-              <button onClick={() => setSelectBoardModalOpen(!selectBoardModalOpen)}><img src={chevronDown} alt="select board"/></button>
+              {/* opens mobile menu */}
+              <button   className={style.chevron}
+                        onClick={() => setSidebarOpen(!sidebarOpen)}>
+                  <img  src={sidebarOpen ? chevronUp : chevronDown} 
+                        alt="select board"/>
+              </button> 
+              {/* opens bigger screen menu, breakpoint at 768px */}
+              <button className={style["show-sidebar"]}
+                      onClick={() => setSidebarOpen(!sidebarOpen)}>
+                  <img  src={eyeIcon}  
+                        alt="open sidebar menu"/>
+              </button> 
             </div> 
         </div>
         <div className={style["navbar-right"]}>
@@ -44,10 +57,11 @@ export const Navbar = ( {boardsExist} ) => {
                       <img src={iconAddTaskMobile} alt=""/>
                       <span className={style["add-task-txt"]}>Add New Task</span>
             </button>
+              
             <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalEllipsis} className={style.verticalElipses} alt="open dropdown menu"/></button>
         </div>
        {addTaskModalOpen ? <NewTask /> : ''}
-       {selectBoardModalOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
+       {sidebarOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
        {dropDownOpen ? <DropDown setModalOpen={setEditBoardModalOpen} modalOpen={editBoardModalOpen} type={"Board"}/> : ''}
     </div>
   )
