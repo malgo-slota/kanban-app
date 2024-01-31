@@ -51,6 +51,15 @@ const boardsSlice = createSlice ({
             task.status = status;
             task.subtasks = subtasks;            
         },
+        setSubtaskIsCompleted: (state, action) => {
+            const colIndex = action.payload.colIndex;
+            const taskIndex = action.payload.taskIndex;
+            const board = state.find((board) => board.isActive);
+            const column = board.columns[colIndex];
+            const task = column.tasks[taskIndex];
+            const subtask = task.subtasks.find((subtask, i) => i === action.payload.subtaskIndex);
+            subtask.isCompleted = !subtask.isCompleted;
+        },
     }
 })
 

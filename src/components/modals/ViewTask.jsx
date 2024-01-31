@@ -6,20 +6,19 @@ import { DropDown } from './DropDown';
 import { useSelector } from 'react-redux';
 import { EditTask } from './EditTask';
 import { createPortal } from 'react-dom';
+import { Subtask } from './Subtask';
 
-export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }) => {
+export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen, completedCounter }) => {
 
     const [dropdownOpen, setDropDownOpen] = useState(false);
-    const activeBoard = useSelector((state) => state.boards).find(
-                    (board) => board.isActive
-    );
+    const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
     const columns = activeBoard.columns;
     const col = columns.find((col, i) => i === colIndex);
     const task = col.tasks.find((task, i) => i === taskIndex);
     const subtasks = task.subtasks;
     const [status, setStatus] = useState(task.status);
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
-
+    
     const setOpenEditModal = () => {
         setEditTaskModalOpen(true);
         setDropDownOpen(false)
@@ -29,6 +28,7 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
         setDropDownOpen(false)
         // setIsDeleteModalOpen(true)
     };
+
 
   return (
     <div className={style["modal-bg"]}
@@ -63,18 +63,11 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen }
             <p>{task.description}</p>
             <div>
                 <p className={style["main-label"]}>
-                    Subtasks (2 of {subtasks.length})
+                    Subtasks ({completedCounter} of {subtasks.length})
                 </p>
-                {subtasks.map((subtask) => {
+                {subtasks.map((subtask, index) => {
                     return (
-                        <div className={style.subtask}>
-                            <input  type="checkbox" 
-                                    id="one" 
-                                    defaultChecked={subtask.isCompleted}/>
-                            <label htmlFor='one'>
-                                {subtask.title}
-                            </label>
-                        </div>
+                        <Subtask taskIndex={taskIndex} colIndex={colIndex} subtaskIndex={index}/>
                     );
                 })}
             </div>
