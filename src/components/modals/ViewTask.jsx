@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import style from '../../style/viewTask.module.scss';
 import verticalEllipsis from '../../assets/icon-vertical-ellipsis.svg';
 import { Select } from '../elements/select/Select';
@@ -7,9 +7,17 @@ import { useSelector } from 'react-redux';
 import { EditTask } from './EditTask';
 import { createPortal } from 'react-dom';
 import { Subtask } from './Subtask';
+import { useDispatch } from 'react-redux';
+import boardsSlice from '../../redux/boardsSlice';
 
-export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen, completedCounter }) => {
+export const ViewTask = ({  taskIndex, 
+                            colIndex, 
+                            setViewTaskOpen, 
+                            viewTaskOpen, 
+                            completedCounter,
+                        }) => {
 
+    const dispatch = useDispatch();
     const [dropdownOpen, setDropDownOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
     const columns = activeBoard.columns;
@@ -17,6 +25,7 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen, 
     const task = col.tasks.find((task, i) => i === taskIndex);
     const subtasks = task.subtasks;
     const [status, setStatus] = useState(task.status);
+    const [newColIndex, setNewColIndex] = useState(colIndex);
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
     
     const setOpenEditModal = () => {
@@ -29,6 +38,14 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen, 
         // setIsDeleteModalOpen(true)
     };
 
+     const changeTaskStatus = () => {
+         dispatch(boardsSlice.actions.setNewTaskStatus({
+            status,
+            colIndex, 
+            taskIndex,
+            newColIndex,
+        }));
+      }
 
   return (
     <div className={style["modal-bg"]}
@@ -37,6 +54,7 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen, 
                                     return;
                                 }
                                 setViewTaskOpen(!viewTaskOpen);
+                                changeTaskStatus();
                             }}>
         <div className={style.modal}>
             <div className={style.header}>
@@ -75,10 +93,10 @@ export const ViewTask = ( { taskIndex, colIndex, setViewTaskOpen, viewTaskOpen, 
                 <p className={style["main-label"]}>
                     Current Status
                 </p>
-                <Select prevColIndex={colIndex} 
-                        taskIndex={taskIndex} 
-                        status={status}
-                        setStatus={setStatus}/>
+            
+                <Select status={status}
+                        setStatus={setStatus} 
+                        setNewColIndex={setNewColIndex}/>
             </div>
         </div>
     </div>
