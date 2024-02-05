@@ -72,6 +72,7 @@ export const ViewTask = ({  taskIndex,
                 {editTaskModalOpen ? createPortal(
                                             <EditTask   taskIndex={taskIndex} 
                                                         colIndex={colIndex} 
+                                                        setNewColIndex={setNewColIndex}
                                                         setEditTaskModalOpen={setEditTaskModalOpen}
                                                         status={status}
                                                         setStatus={setStatus}/>,
