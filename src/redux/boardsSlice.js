@@ -74,6 +74,11 @@ const boardsSlice = createSlice ({
             const newCol = columns.find((col, i) => i === newColIndex);
             newCol.tasks.push(task);
         },
+        editBoard: (state, action) => {
+            const board = state.find((board) => board.isActive);
+            board.name = action.payload.newBoardName;
+            board.columns = action.payload.updatedColumns;
+        },
     }
 })
 

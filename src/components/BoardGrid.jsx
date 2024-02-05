@@ -26,7 +26,7 @@ export const BoardGrid = () => {
                     onClick={() => setEditBoardOpen(!editBoardOpen)}>
                     + New Column
             </div>
-            {editBoardOpen ? <EditBoard /> : ''}
+            {editBoardOpen ? <EditBoard setEditBoardOpen={setEditBoardOpen}/> : ''}
         </div>
     )
 }
