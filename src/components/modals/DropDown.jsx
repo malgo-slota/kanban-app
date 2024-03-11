@@ -3,7 +3,16 @@ import style from '../../style/dropDopwn.module.scss';
 import { EditBoard } from './EditBoard';
 import { EditTask } from './EditTask';
 
-export const DropDown = ({editTaskModalOpen, setEditTaskModalOpen, type, colIndex, taskIndex, setOpenEditModal}) => {
+export const DropDown = ({
+                        editTaskModalOpen, 
+                        setEditTaskModalOpen, 
+                        type, 
+                        colIndex, 
+                        taskIndex, 
+                        setOpenEditModal,
+                        editBoardModalOpen,
+                        setEditBoardModalOpen
+                      }) => {
 
   return (
     <div className={style.modal}>
@@ -14,7 +23,7 @@ export const DropDown = ({editTaskModalOpen, setEditTaskModalOpen, type, colInde
           Delete {type}
         </button>
 
-        {/* {modalOpen && type === "Board" ? <EditBoard /> : ""} */}
+        {type === "Board" ? <EditBoard setEditBoardOpen={setEditBoardModalOpen}/> : ""}
         {/* {editTaskModalOpen && type === "Task" ? <EditTask taskIndex={taskIndex} colIndex={colIndex} setEditTaskModalOpen={setEditTaskModalOpen}/> : ""} */}
 
     </div>
