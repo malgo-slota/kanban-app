@@ -79,6 +79,10 @@ const boardsSlice = createSlice ({
             board.name = action.payload.newBoardName;
             board.columns = action.payload.updatedColumns;
         },
+        deleteBoard: (state) => {
+            const board = state.find((board) => board.isActive);
+            state.splice(state.indexOf(board), 1);
+        },
     }
 })
 

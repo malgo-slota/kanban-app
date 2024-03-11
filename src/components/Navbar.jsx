@@ -27,12 +27,6 @@ export const Navbar = ( {boardsExist} ) => {
   const [isBoardModalOpen, setIsBoardModalOpen] = useState(false);
 
   const { sidebarOpen, setSidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useModal();
-
-   const setOpenEditModal = () => {
-        setEditBoardModalOpen(true);
-        setDropDownOpen(false)
-    };
-
   return (
     <div className={style.navbar}>
         <div className={`${style["navbar-left"]}`}>
@@ -68,7 +62,11 @@ export const Navbar = ( {boardsExist} ) => {
             <button onClick={() => setDropDownOpen(!dropDownOpen)}><img src={verticalEllipsis} className={style.verticalElipses} alt="open dropdown menu"/></button>
         </div>
        {addTaskModalOpen ? <NewTask /> : ''}
-       {dropDownOpen ? <DropDown setEditBoardModalOpen={setEditBoardModalOpen} editBoardModalOpen={editBoardModalOpen} type={"Board"} setOpenEditModal={setEditBoardModalOpen}/> : ''}
+       {dropDownOpen ? <DropDown  
+                                  setEditBoardModalOpen={setEditBoardModalOpen} 
+                                  editBoardModalOpen={editBoardModalOpen} 
+                                  type={"Board"} 
+                                  setDropDownOpen={setDropDownOpen}/> : ''}
     </div>
   )
 }

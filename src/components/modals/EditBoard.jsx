@@ -19,6 +19,7 @@ export const EditBoard = ({ setEditBoardOpen }) => {
                         newBoardName,
                         updatedColumns,
         }));
+        setEditBoardOpen(false);
     };
 
     const addColumn = (e) => {
@@ -45,7 +46,8 @@ export const EditBoard = ({ setEditBoardOpen }) => {
                                     return;
                                 }
                                 setEditBoardOpen(false);
-                            }}>
+                            }}
+                            >
         <div className={style.modal}>
             <p>Edit Board</p>
             <div className={style["board-columns"]}>
