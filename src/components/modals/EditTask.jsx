@@ -16,7 +16,6 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
 
     const [title, setTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
-    // const [status, setStatus] = useState(task.status);
     const [subtasks, setSubtasks] = useState(task.subtasks);
 
     const changeTask = (e) => {

@@ -83,6 +83,12 @@ const boardsSlice = createSlice ({
             const board = state.find((board) => board.isActive);
             state.splice(state.indexOf(board), 1);
         },
+        deleteTask: (state, action) => {
+            const payload = action.payload;
+            const board = state.find((board) => board.isActive);
+            const col = board.columns.find((col, i) => i === payload.colIndex);
+            col.tasks = col.tasks.filter((task, i) => i !== payload.taskIndex);
+        },
     }
 })
 

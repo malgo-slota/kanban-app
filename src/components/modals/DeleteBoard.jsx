@@ -2,7 +2,7 @@ import boardsSlice from '../../redux/boardsSlice';
 import style from '../../style/deleteModal.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 
-export const DeleteBoard = ( { setWarningModalOpen, setDropDownOpen }) => {
+export const DeleteBoard = ( { setWarningModalBoardOpen, setDropDownOpen }) => {
 
   const dispatch = useDispatch();
   const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
@@ -10,7 +10,7 @@ export const DeleteBoard = ( { setWarningModalOpen, setDropDownOpen }) => {
   const handleDelete = () => {
     dispatch(boardsSlice.actions.deleteBoard());
     dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
-    setWarningModalOpen(false);
+    setWarningModalBoardOpen(false);
     setDropDownOpen(false);
   }
 
@@ -26,7 +26,7 @@ export const DeleteBoard = ( { setWarningModalOpen, setDropDownOpen }) => {
                         Delete
                 </button>
                 <button className={style["cancel-btn"]}
-                        onClick={() => setWarningModalOpen(false)}
+                        onClick={() => setWarningModalBoardOpen(false)}
                         >
                         Cancel
                 </button>
