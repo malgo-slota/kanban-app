@@ -34,7 +34,8 @@ export const DropDown = ({
   }
 
   return (
-    <div className={style.modal}>
+    <div className={type === 'Task' ? `${style.modal} ${style["modal-type-task"]}` : `${style.modal}`}>
+    {/* <div className={style.modal}> */}
         <button  onClick={()=> handleEdit(type)}>
           Edit {type}
         </button>

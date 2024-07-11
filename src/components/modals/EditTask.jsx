@@ -18,6 +18,19 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
     const [description, setDescription] = useState(task.description);
     const [subtasks, setSubtasks] = useState(task.subtasks);
 
+    const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+    if (isFirstLoad) {
+        setSubtasks(
+          task.subtasks.map((subtask) => {
+            return { ...subtask, id: uuid() };
+          })
+        );
+        setTitle(task.title);
+        setDescription(task.description);
+        setIsFirstLoad(false);
+    }
+
     const changeTask = (e) => {
         e.preventDefault();
         dispatch(boardsSlice.actions.editTask({
@@ -39,7 +52,7 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
     };
 
     const removeSubtask = (id) => {
-         setSubtasks((prevState) => prevState.filter((el) => el.id !== id));
+        setSubtasks((prevState) => prevState.filter((el) => el.id !== id));
     };
 
     const subtaskHandle = (id, value) => {
@@ -78,14 +91,16 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
             </div>
             <div className={style.subtasks}>
                 <label>Subtasks</label>
-                {subtasks.map((subtask)=> {
+                {subtasks.map((subtask, index)=> {
                     return (
-                         <div>
+                         <div key={index}>
                             <input  type="text" 
                                     placeholder={subtask.title} 
                                     onChange={(e) => subtaskHandle(subtask.id ,e.target.value)}/>
-                            <button onClick={() => removeSubtask(subtask.id)}>
-                                <img src={iconCross} />
+                            <button>
+                                <img src={iconCross} 
+                                    onClick={() => removeSubtask(subtask.id)}
+                                    />
                             </button>
                         </div>
                     );

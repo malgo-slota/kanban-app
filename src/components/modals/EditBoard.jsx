@@ -14,6 +14,18 @@ export const EditBoard = ({ setEditBoardOpen }) => {
 
     const dispatch = useDispatch();
 
+    const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+    if (isFirstLoad) {
+        setUpdatedColumns(
+          columns.map((col) => {
+            return { ...col, id: uuid() };
+          })
+        );
+        setNewBoardName(activeBoard.name);
+        setIsFirstLoad(false);
+      }
+
     const handleChange = () => {
         dispatch(boardsSlice.actions.editBoard({
                         newBoardName,
@@ -29,6 +41,10 @@ export const EditBoard = ({ setEditBoardOpen }) => {
                             { name: "", tasks: [], id: uuid() },
                         ]);
     };
+
+    const onDelete = (id) => {
+        setUpdatedColumns((prevState) => prevState.filter((column) => column.id !== id));
+      };
 
      const columnsHandle = (id, value) => {
             setUpdatedColumns((prevState)=>{
@@ -57,13 +73,14 @@ export const EditBoard = ({ setEditBoardOpen }) => {
             </div>
             <div className={style["board-columns"]}>
                 <label>Board Columns</label>
-                {updatedColumns.map((column) => (
-                    <div key={column.id}>
+                {updatedColumns.map((column, index) => (
+                    <div key={index}>
                         <input  type="text" 
                                 placeholder={column.name} 
                                 onChange={(e) => columnsHandle(column.id ,e.target.value)}/>
                         <button>
                             <img src={iconCross}  
+                                    onClick={() => {onDelete(column.id)}}
                                  alt="delete column"/>
                         </button>
                     </div>
