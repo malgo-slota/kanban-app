@@ -3,6 +3,7 @@ import style from '../../style/dropDopwn.module.scss';
 import { EditBoard } from './EditBoard';
 import { DeleteBoard } from './DeleteBoard';
 import { DeleteTask } from './DeleteTask';
+import { useSelector } from 'react-redux';
 
 export const DropDown = ({
                         setEditTaskModalOpen, 
@@ -16,6 +17,8 @@ export const DropDown = ({
 
   const [warningModalBoardOpen, setWarningModalBoardOpen] = useState(false);
   const [warningModalTaskOpen, setWarningModalTaskOpen] = useState(false);
+
+  const theme = useSelector(status => status.theme);
 
   const handleDelete = (type) => {
     if (type === 'Board') {
@@ -34,7 +37,16 @@ export const DropDown = ({
   }
 
   return (
-    <div className={type === 'Task' ? `${style.modal} ${style["modal-type-task"]}` : `${style.modal}`}>
+    <div className={type === 'Task' ? 
+
+                      `${theme === "dark" ? 
+                          `${style["modal-dark"]} ${style.modal}` : `${style.modal} ${style["modal-type-task"]}`}` 
+
+                      : `${theme === "dark" ? 
+                          `${style["modal-dark"]} ${style.modal}` : style.modal}`
+                          
+                      }>
+
     {/* <div className={style.modal}> */}
         <button  onClick={()=> handleEdit(type)}>
           Edit {type}

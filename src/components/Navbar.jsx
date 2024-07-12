@@ -15,12 +15,14 @@ import { useSelector } from 'react-redux';
 import eyeIcon from '../assets/icon-show-sidebar.svg';
 
 
+
 export const Navbar = ( {boardsExist} ) => {
 
-   const activeBoard = useSelector((state) => state.boards).find(
+  const activeBoard = useSelector((state) => state.boards).find(
                     (board) => board.isActive
-    );
-
+  );
+  const theme = useSelector((state) => state.theme);
+  
   // const [newTaskModalOpen, setNewTaskModalOpen] = useState(false);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [editBoardModalOpen, setEditBoardModalOpen] = useState(false);
@@ -28,12 +30,16 @@ export const Navbar = ( {boardsExist} ) => {
 
   const { sidebarOpen, setSidebarOpen, setAddTaskModalOpen, addTaskModalOpen } = useModal();
   return (
-    <div className={style.navbar}>
+    <div className={theme === 'dark' ? `${style.navbar} ${style["navbar-dark"]}` : style.navbar}>
         <div className={`${style["navbar-left"]}`}>
             {sidebarOpen ? <SelectBoard setIsBoardModalOpen={setIsBoardModalOpen} isBoardModalOpen={isBoardModalOpen}/> : ''}
             <img src={logoMobile} className={style["display-mobile-logo"]} alt=""/>
-            <img src={logoDark} className={style["display-dark-logo"]} alt=""/>
-            <img src={logoLight} className={style["display-light-logo"]} alt=""/>
+            <img  src={theme === 'dark' ? logoLight : logoDark} 
+                  className={style["display-dark-logo"]} 
+                  alt=""/>
+            <img src={logoLight} 
+                  className={style["display-light-logo"]} 
+                  alt=""/>
             <span className={style["vertical-line"]}></span>
             <div className={style["board-name"]}>
               <span className={sidebarOpen ? style.isOpen : ''}>{activeBoard.name}</span>

@@ -15,6 +15,8 @@ export const NewTask = () => {
         );
     const columns = activeBoard.columns;
 
+    const theme = useSelector(state => state.theme);
+
     const { setAddTaskModalOpen } = useModal();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -66,7 +68,7 @@ export const NewTask = () => {
                             }
                             setAddTaskModalOpen(false);
                         }}>
-            <div className={style.modal}>
+            <div className={theme === 'dark' ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
                 <div className={style.content}>
                     <h1>Add New Task</h1>
                     <div className={style.field}>

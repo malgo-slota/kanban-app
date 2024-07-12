@@ -47,3 +47,11 @@
 .container.show {
     border: 1px solid #635FC7;
 }
+
+.container-dark {
+    color: #fff;
+    .options.show{
+        background: #20212C;
+    }
+}
+

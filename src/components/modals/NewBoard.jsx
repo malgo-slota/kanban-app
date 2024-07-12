@@ -9,6 +9,7 @@ export const NewBoard = ({setIsBoardModalOpen}) => {
 
     const dispatch = useDispatch();
     const current = useSelector((state) => state.boards);
+    const theme = useSelector(state => state.theme);
     const [boardName, setBoardName] = useState("");
     const [boardColumns, setBoardColumns] = useState([
         { name: "Todo", tasks: [], id: 1},
@@ -53,7 +54,7 @@ export const NewBoard = ({setIsBoardModalOpen}) => {
                 }
                 setIsBoardModalOpen(false);
             }}>
-            <div className={style.modal}>
+            <div className={theme === 'dark' ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
                 <form>
                     <h1>Add New Board</h1>
                     <div>

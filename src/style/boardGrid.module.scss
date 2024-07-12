@@ -27,7 +27,6 @@
                 background: #49C4E5;
             }
         }
-        
         .cell-task {
             .wrapper {
                 cursor: pointer;
@@ -53,6 +52,12 @@
                 }
             }       
         }
+        .cell-task-dark {
+            .wrapper {
+                background: #2B2C37;
+            }
+           
+        }
     }
     .add-column {
         width: 17.5rem;
@@ -67,6 +72,9 @@
         font-size: 1.5rem;
         font-family: Plus Jakarta Sans;
         font-weight: 700;
+    }
+    .add-column-dark {
+        background: linear-gradient(0deg, rgba(43,44,55,1) 50%, rgba(43,44,55,1) 100%);
     }
 }
 .sidebar-open {

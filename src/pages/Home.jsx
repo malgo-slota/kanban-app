@@ -11,6 +11,8 @@ export const Home = () => {
 
     const dispatch = useDispatch();
     const boards = useSelector((state) => state.boards);
+    const theme = useSelector((state) => state.theme);
+   
   
     const activeBoard = boards.find((board) => board.isActive);
     if (!activeBoard && boards.length > 0)
@@ -25,12 +27,12 @@ export const Home = () => {
   // const board = boards.find((board) => board.isActive === true);
 
   return (
-    <div>
+    <div className={theme}>
         <Navbar boardsExist={boardsExist} 
                 selectedBoard={selectedBoard}
                 />
-        {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />}
-       
+        {/* {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />} */}
+        {boardsExist ?  <EmptyBoard />  : <BoardGrid boards={boards}/>}
         {/* {sidebarOpen ? <SelectBoard selectedBoard={selectedBoard}
                                     setSelectedBoard={setSelectedBoard} 
                                     /> : ''} */}

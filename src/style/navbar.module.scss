@@ -23,7 +23,7 @@
             display: none;
         }
     }
-
+    
     .display-mobile-logo {
         padding: 1rem;
     }
@@ -133,5 +133,13 @@
         .isOpen {
         margin-left: 3.6rem;
         }
+    }
+}
+
+.navbar-dark {
+    background: #2B2C37;
+    border-bottom: 0.1px solid #3E3F4E;
+    .navbar-left .vertical-line {
+        background: #3E3F4E;
     }
 }

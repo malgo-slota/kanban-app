@@ -9,6 +9,7 @@ export const BoardGrid = () => {
 
 
     const { sidebarOpen } = useModal();
+    const theme = useSelector((state) => state.theme);
 
     const [editBoardOpen, setEditBoardOpen] = useState(false);
     const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
@@ -22,7 +23,7 @@ export const BoardGrid = () => {
                     <Column key={index} colIndex={index} />
                 ))) 
             : '' }    
-            <div className={`${style.column} ${style["add-column"]}`}
+            <div className={theme === 'dark' ? `${style.column} ${style["add-column"]} ${style["add-column-dark"]}` : `${style.column} ${style["add-column"]}`}
                     onClick={() => setEditBoardOpen(!editBoardOpen)}>
                     + New Column
             </div>

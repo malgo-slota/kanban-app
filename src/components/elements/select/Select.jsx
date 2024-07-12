@@ -11,6 +11,7 @@ export const Select = ({
     
   const [isOpen, setIsOpen] = useState(false);
   const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
+  const theme = useSelector(state => state.theme);
 
   const changeStatus = (index, option) => {
     setNewColIndex(index)
@@ -18,7 +19,7 @@ export const Select = ({
   }
       
   return (
-    <div className={`${styles.container} ${isOpen ? styles.show : ""}`}
+    <div className={`${theme === "dark" ? `${styles.container} ${styles["container-dark"]}` : styles.container} ${isOpen ? styles.show : ""}`}
           onClick={e => {
                           e.stopPropagation()
                           setIsOpen(!isOpen)

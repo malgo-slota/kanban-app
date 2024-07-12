@@ -6,6 +6,7 @@ export const DeleteBoard = ( { setWarningModalBoardOpen, setDropDownOpen }) => {
 
   const dispatch = useDispatch();
   const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
+  const theme = useSelector(state => state.theme);
 
   const handleDelete = () => {
     dispatch(boardsSlice.actions.deleteBoard());
@@ -16,7 +17,7 @@ export const DeleteBoard = ( { setWarningModalBoardOpen, setDropDownOpen }) => {
 
   return (
     <div className={style["modal-bg"]}>
-        <div className={style.modal}>
+        <div className={theme === 'dark' ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
             <h1>Delete this board?</h1>
             <p>Are you sure you want to delete the <span>‘{activeBoard.name}’</span> board? This action will remove all columns and tasks and cannot be reversed.</p>
             <div className={style.buttons}>

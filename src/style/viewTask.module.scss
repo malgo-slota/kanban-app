@@ -79,5 +79,14 @@
               
             }
     }
+    .modal-dark {
+        background: #2B2C37;
+        .subtask {
+            background: #20212C;
+            input[type="checkbox"] {
+                background: #2B2C37;
+            }
+        }
+    }
           
 }

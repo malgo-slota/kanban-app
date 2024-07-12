@@ -27,6 +27,8 @@ export const ViewTask = ({  taskIndex,
     const [status, setStatus] = useState(task.status);
     const [newColIndex, setNewColIndex] = useState(colIndex);
     const [editTaskModalOpen, setEditTaskModalOpen] = useState(false);
+
+    const theme = useSelector(state => state.theme);
     
     const setOpenEditModal = () => {
         setEditTaskModalOpen(true);
@@ -56,7 +58,7 @@ export const ViewTask = ({  taskIndex,
                                 setViewTaskOpen(!viewTaskOpen);
                                 changeTaskStatus();
                             }}>
-        <div className={style.modal}>
+        <div className={theme === 'dark' ? `${style["modal-dark"]} ${style.modal}` : style.modal}>
             <div className={style.header}>
                 <h1>{task.title}</h1>
                 <button onClick={() => setDropDownOpen(!dropdownOpen)}>

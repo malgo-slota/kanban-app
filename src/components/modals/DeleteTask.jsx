@@ -6,7 +6,8 @@ export const DeleteTask = ( {colIndex, taskIndex, setWarningModalTaskOpen, setDr
 
   const dispatch = useDispatch();
   const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
-     
+  const theme = useSelector(state => state.theme);
+  
    const handleDelete = () => {
     dispatch(boardsSlice.actions.deleteTask({
                       colIndex,
@@ -18,7 +19,7 @@ export const DeleteTask = ( {colIndex, taskIndex, setWarningModalTaskOpen, setDr
 
   return (
     <div className={style["modal-bg"]}>
-        <div className={style.modal}>
+        <div className={theme === 'dark' ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
             <h1>Delete this task?</h1>
             <p>Are you sure you want to delete the <span>`{activeBoard.columns[colIndex].tasks[taskIndex].title}`</span> task and its subtasks? This action cannot be reversed.</p>
             <div className={style.buttons}>

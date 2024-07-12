@@ -15,8 +15,10 @@ export const Task = ( { colIndex, taskIndex } ) => {
   const subtasks = task.subtasks; 
   const completedCounter = subtasks.reduce((counter, sub) => sub.isCompleted === true ? counter += 1 : counter, 0);
   
+  const theme = useSelector((state) => state.theme);
+
   return ( 
-    <div className={style["cell-task"]}>
+    <div className={theme === 'dark' ? `${style["cell-task"]} ${style["cell-task-dark"]}`: `${style["cell-task"]}`}>
             {viewTaskOpen ? <ViewTask   key={taskIndex} 
                                         taskIndex={taskIndex}
                                         colIndex={colIndex} 

@@ -14,6 +14,8 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
         );
     const task = activeBoard.columns[colIndex].tasks[taskIndex];
 
+    const theme = useSelector(state => state.theme);
+
     const [title, setTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
     const [subtasks, setSubtasks] = useState(task.subtasks);
@@ -72,7 +74,7 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
                             }
                             setEditTaskModalOpen(false);
                         }}>
-        <div className={style.modal}>
+        <div className={theme === 'dark' ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
             <div className={style.header}>
                  <h1>Edit Task</h1>
             </div>

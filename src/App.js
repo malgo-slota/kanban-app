@@ -6,13 +6,13 @@ import store from './redux/store';
 function App() {
 
   return (
-    <>
+    <div>
     <Provider store={store}>
        <ModalProvider>
-        <Home />
+          <Home />
       </ModalProvider>
     </Provider>
-    </>
+    </div>
   );
 }
 

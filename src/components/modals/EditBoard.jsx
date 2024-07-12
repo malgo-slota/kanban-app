@@ -9,6 +9,8 @@ export const EditBoard = ({ setEditBoardOpen }) => {
 
     const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
     const columns = activeBoard.columns;
+
+    const theme = useSelector(state => state.theme);
     const [newBoardName, setNewBoardName] = useState(activeBoard.name);
     const [updatedColumns, setUpdatedColumns] = useState(columns);
 
@@ -64,7 +66,7 @@ export const EditBoard = ({ setEditBoardOpen }) => {
                                 setEditBoardOpen(false);
                             }}
                             >
-        <div className={style.modal}>
+        <div className={theme === 'dark' ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
             <p>Edit Board</p>
             <div className={style["board-columns"]}>
                 <label>Board Name</label>

@@ -11,11 +11,13 @@ import logoDark from '../../assets/logo-dark.svg';
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import boardsSlice from '../../redux/boardsSlice';
+import themeSlice from '../../redux/themeSlice';
 
 export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
 
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards);
+  const theme = useSelector((state) => state.theme);
   const { sidebarOpen, setSidebarOpen } = useModal();
   // document.body.style.overflow = "hidden";
   // but apply it only on mobile
@@ -24,10 +26,9 @@ export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
 
   return (
     <div className={style["modal-bg"]}>
-      <div className={style.modal}>
+      <div className={theme === "dark" ? `${style.modal} ${style["modal-dark"]}` : style.modal}>
           <div>
-            <img src={logoDark} className={style["display-dark-logo"]} alt=""/>
-            <img src={logoLight} className={style["display-light-logo"]} alt=""/>
+            <img src={theme === "dark" ? logoLight : logoDark} className={theme === 'dark' ? `${style["display-dark-logo"]}` :  `${style["display-light-logo"]}`} alt=""/>
             <p>ALL BOARDS ({boards.length})</p>
             <ul className={style["boards-list"]}>
                 {boards.map((board, index) => {
@@ -51,9 +52,10 @@ export const SelectBoard = ( { setIsBoardModalOpen, isBoardModalOpen } ) => {
           <div className={style["modal-bottom"]}>
             <div className={style["display-mode"]}>
               <img src={sunIcon} alt="light theme"/>
-              <div>
-                  <input type="checkbox" />
-                  <div className={style.slider}></div>
+              <div onClick={() => dispatch(themeSlice.actions.toggleTheme())}>
+                  <input type="checkbox"/>
+                  <div className={theme === 'dark' ? `${style["slider-right"]} ${style.slider}` : `${style.slider}`}>
+                  </div>
               </div>
               <img src={moonIcon} id={style.moon} alt="dark theme"/>
             </div>
