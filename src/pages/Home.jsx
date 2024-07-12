@@ -31,8 +31,7 @@ export const Home = () => {
         <Navbar boardsExist={boardsExist} 
                 selectedBoard={selectedBoard}
                 />
-        {/* {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />} */}
-        {boardsExist ?  <EmptyBoard />  : <BoardGrid boards={boards}/>}
+        {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />}
         {/* {sidebarOpen ? <SelectBoard selectedBoard={selectedBoard}
                                     setSelectedBoard={setSelectedBoard} 
                                     /> : ''} */}
