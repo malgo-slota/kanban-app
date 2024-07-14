@@ -13,14 +13,17 @@ export const Home = () => {
     const boards = useSelector((state) => state.boards);
     const theme = useSelector((state) => state.theme);
    
-  
-    const activeBoard = boards.find((board) => board.isActive);
-    if (!activeBoard && boards.length > 0)
-    dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
     const [boardsExist, setBoardsExist] = useState(true);
     const [selectedBoard, setSelectedBoard] = useState("Platform Launch");
 
     const { sidebarOpen } = useModal();
+  
+    const activeBoard = boards.find((board) => board.isActive);
+    
+    if (!activeBoard && boards.length > 0)
+      dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));
+    
+    
     
   // const dispatch = useDispatch();
   //   const boards = useSelector((state) => state.boards);
@@ -28,10 +31,22 @@ export const Home = () => {
 
   return (
     <div className={theme}>
-        <Navbar boardsExist={boardsExist} 
+      {boards.length > 0 ? (
+        <>
+          <Navbar boardsExist={boardsExist} 
                 selectedBoard={selectedBoard}
                 />
-        {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />}
+          <BoardGrid boards={boards} />
+        </>
+   
+      ) : (
+        <EmptyBoard type="add" boardsExist={boardsExist}/>
+      )}
+
+
+
+        
+        {/* {boardsExist ?  <BoardGrid boards={boards} /> : <EmptyBoard />} */}
         {/* {sidebarOpen ? <SelectBoard selectedBoard={selectedBoard}
                                     setSelectedBoard={setSelectedBoard} 
                                     /> : ''} */}
