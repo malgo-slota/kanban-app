@@ -77,7 +77,8 @@ export const ViewTask = ({  taskIndex,
                                                         setNewColIndex={setNewColIndex}
                                                         setEditTaskModalOpen={setEditTaskModalOpen}
                                                         status={status}
-                                                        setStatus={setStatus}/>,
+                                                        setStatus={setStatus}
+                                                        setDropDownOpen={setDropDownOpen}/>,
                                             document.body
                 ) : ''}
             </div>

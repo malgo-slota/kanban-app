@@ -10,8 +10,9 @@
     align-items: center;
     justify-content: center;
     .modal {
-        // overflow-y: scroll;
-        // position: ;
+        overflow-y: scroll;
+        // overflow: visible;
+        max-height: 90vh;
         background: #fff;
         border-radius: 6px;
         max-width: 30rem;
@@ -24,7 +25,6 @@
         // transform: translate(0%, 33.5%);
         h1 {
             font-size: 1.125rem;
-            color: #fff;
         }
         input {
             padding: 1rem;
@@ -95,16 +95,20 @@
             }
         }
                   .create-task-btn {
-                    height: 2.5rem;
+                    padding: 0.5rem 0;
                     border-radius: 20px;
                     background: #635FC7;
                     color: #FFF;
                     text-align: center;
                     font-size: 0.8125rem;
                     line-height: 1.4375rem;
+                    margin-bottom: 0.5rem;
                 }
     } 
     .modal-dark {
+        h1 {
+            color: #fff;
+        }
         background: #2B2C37;
         input, textarea {
             background: #2B2C37;

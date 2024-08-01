@@ -9,7 +9,9 @@
         justify-content: center;
         align-items: center;
     .modal {
-            // overflow-y: scroll;
+            overflow-y: scroll;
+            // overflow: visible;
+            max-height: 90vh;
             position: relative;
             background: #fff;
             border-radius: 6px;

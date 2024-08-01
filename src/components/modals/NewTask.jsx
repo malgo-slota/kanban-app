@@ -37,6 +37,7 @@ export const NewTask = () => {
                                                     newColIndex
                                                 }))
         e.preventDefault();
+        setAddTaskModalOpen(false);
     };
 
     const addNewSubtask = (e) => {

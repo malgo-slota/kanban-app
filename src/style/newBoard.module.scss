@@ -12,6 +12,7 @@
         justify-content: center;
         .modal {
             overflow-y: scroll;
+            max-height: 90vh;
             // position: relative;
             margin: 0 1rem;
             max-width: 30rem;
@@ -60,7 +61,6 @@
                     }
                 }
                 .columns-wrapper {
-                    // border: 1px solid purple;
                     // margin-top: 0.8rem;
                     display: flex;
                     button {

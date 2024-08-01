@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { v4 as uuid } from "uuid";
 
-export const EditBoard = ({ setEditBoardOpen }) => {
-
+export const EditBoard = ({ setEditBoardOpen, setDropDownOpen }) => {
+    
     const activeBoard = useSelector((state) => state.boards).find((board) => board.isActive);
     const columns = activeBoard.columns;
 
@@ -34,6 +34,7 @@ export const EditBoard = ({ setEditBoardOpen }) => {
                         updatedColumns,
         }));
         setEditBoardOpen(false);
+        setDropDownOpen(false);
     };
 
     const addColumn = (e) => {

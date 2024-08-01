@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "../../../style/select.module.scss";
 import { useSelector } from "react-redux";
 import chevronDown from '../../../assets/icon-chevron-down.svg';
+import chevronUp from '../../../assets/icon-chevron-up.svg';
 
 export const Select = ({ 
                           status,
@@ -27,7 +28,7 @@ export const Select = ({
         <span className={styles.value}>
           {status}
         </span>
-        <div><img src={chevronDown} alt="show other statuses"/></div>
+        <div><img src={isOpen ? chevronUp : chevronDown} alt="show other statuses"/></div>
         <ul className={`${styles.options} ${isOpen ? styles.show : ""}`}>
             {/* other available statuses to choose from */}
             {activeBoard.columns.map((option, index) => (

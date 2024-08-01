@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import boardsSlice from '../../redux/boardsSlice';
 import { v4 as uuid } from "uuid";
 
-export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, setStatus, setNewColIndex}) => {
+export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, setStatus, setNewColIndex, setDropDownOpen}) => {
 
     const dispatch = useDispatch();
     const activeBoard = useSelector((state) => state.boards).find(
@@ -43,6 +43,8 @@ export const EditTask = ({taskIndex, colIndex, setEditTaskModalOpen, status, set
                                                 colIndex, 
                                                 taskIndex
                                             }))
+        setEditTaskModalOpen(false);
+        setDropDownOpen(false);
     };
 
     const addNewSubtask = (e) => {

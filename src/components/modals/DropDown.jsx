@@ -30,7 +30,8 @@ export const DropDown = ({
 
   const handleEdit = (type) => {
     if (type === 'Board') {
-       setEditBoardModalOpen(true)
+      setEditBoardModalOpen(true);
+       
     } else if (type === 'Task'){
       setEditTaskModalOpen(true)
     }
@@ -56,7 +57,7 @@ export const DropDown = ({
           Delete {type}
         </button>
 
-        {type === "Board" && editBoardModalOpen ? <EditBoard setEditBoardOpen={setEditBoardModalOpen}/> : ""}
+        {type === "Board" && editBoardModalOpen ? <EditBoard setEditBoardOpen={setEditBoardModalOpen} setDropDownOpen={setDropDownOpen}/> : ""}
         {/* editTask modal is opened from viewTask modal */}
         {/* {editTaskModalOpen && type === "Task" ? <EditTask taskIndex={taskIndex} colIndex={colIndex} setEditTaskModalOpen={setEditTaskModalOpen}/> : ""} */}
         {warningModalBoardOpen ? <DeleteBoard   setDropDownOpen={setDropDownOpen} 

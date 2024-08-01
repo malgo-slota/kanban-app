@@ -11,6 +11,7 @@
         justify-content: center;
     .modal { 
         overflow-y: scroll;
+        max-height: 90vh;
         // position: relative;
         background: #fff;
         border-radius: 6px;
@@ -26,7 +27,6 @@
             font-size: 1.125rem;
         }
         .board-columns {
-            
             display: flex;
             flex-direction: column;
             // gap: 0.75rem;
@@ -34,7 +34,7 @@
                 display: flex;
                 margin-bottom: 0.75rem;
                 gap: 1rem;
-                justify-content: space-between;
+                // justify-content: space-between;
                 input {
                     width: 100%;
                 }
