@@ -4,6 +4,7 @@ import boardsSlice from '../../redux/boardsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { v4 as uuid } from "uuid";
+import setDotColor from '../../utils/dotColor';
 
 export const EditBoard = ({ setEditBoardOpen, setDropDownOpen }) => {
     
@@ -34,7 +35,7 @@ export const EditBoard = ({ setEditBoardOpen, setDropDownOpen }) => {
                         updatedColumns,
         }));
         setEditBoardOpen(false);
-        setDropDownOpen(false);
+        // setDropDownOpen(false);
     };
 
     const addColumn = (e) => {
@@ -43,6 +44,7 @@ export const EditBoard = ({ setEditBoardOpen, setDropDownOpen }) => {
                             ...state,
                             { name: "", tasks: [], id: uuid() },
                         ]);
+        setDotColor();
     };
 
     const onDelete = (id) => {
