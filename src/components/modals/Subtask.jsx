@@ -26,7 +26,7 @@ export const Subtask = ( { subtaskIndex, colIndex, taskIndex }) => {
                     id="one" 
                     defaultChecked={subtask.isCompleted}
                     onChange={() => changeSubtaskCompeleted()} />
-            <label htmlFor='one'>
+            <label htmlFor='one'className={subtask.isCompleted ? style.completed : ''}>
                 {subtask.title} 
             </label>
         </div>
